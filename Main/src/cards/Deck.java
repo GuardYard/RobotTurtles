@@ -21,9 +21,9 @@ public class Deck {
 
     public String getDescription(){
         return this.description;
-    }
+    }       //F
 
-    public void showDeck(){
+    public void showDeck(){         //F
         for (Card card : deck) {
             System.out.print("[");
             System.out.print(card.getCardName());
@@ -31,7 +31,7 @@ public class Deck {
         }
     }
 
-    public Card draw(){
+    public Card draw(){         //A refaire
         Card pioche = deck.get(0);
         deck.remove(0);
         System.out.println("Vous avez pioché une " + pioche.getCardName());
