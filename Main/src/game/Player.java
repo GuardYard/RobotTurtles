@@ -24,7 +24,7 @@ public class Player {
 
     //    block = {}
     public void Player1() {
-        this.icontest = "  P1  ";
+        this.icontest = "  P1 ";
         this.color = "Red";
         this.passageOrder = 0;
         this.direction = "South";
@@ -36,9 +36,16 @@ public class Player {
         this.icontest = "  P2  ";
         this.color = "Blue";
         this.passageOrder = 0;
-        this.direction = "North";
+        this.direction = "South";
         this.deck.setDeck();
+    }
 
+    public void Player3() {
+        this.icontest = "  P2  ";
+        this.color = "Blue";
+        this.passageOrder = 0;
+        this.direction = "South";
+        this.deck.setDeck();
     }
 
     public void seeCardOnHand(){
