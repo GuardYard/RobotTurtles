@@ -6,7 +6,6 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         Game game = new Game();
         System.out.println("Quel le nom du joueur 1?");
         String name=sc.nextLine();
@@ -23,14 +22,12 @@ public class Main {
 
         int x = P1.getX();
         int y = P1.getY();
-        System.out.println(x);
-        System.out.println(y);
+
         game.setCell(P1.getIcontest(),x,y);
         game.viewCell();
 
         game.execute(P1);
-        System.out.println(P1.getX());
-        System.out.println(P1.getY());
+
         game.viewCell();
 
     }
