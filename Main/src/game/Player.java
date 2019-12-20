@@ -1,6 +1,9 @@
-import java.util.*;
+package game;
 
-import static java.lang.Math.random;
+import cards.Card;
+import cards.Deck;
+
+import java.util.*;
 
 public class Player {
     private String icontest = "";
@@ -8,11 +11,11 @@ public class Player {
     private int passageOrder;
     private String name = "";
     private String direction = "";
-    private ArrayList<Carte> handCards = new ArrayList<Carte>();
-    private ArrayList<Carte> program = new ArrayList<Carte>();
-    private ArrayList<Carte> cardPicked = new ArrayList<Carte>();
-    private ArrayList<Carte> blockCardNumber = new ArrayList<Carte>();
-    private ArrayList<Carte> block = new ArrayList<Carte>();
+    private ArrayList<Card> handCards = new ArrayList<Card>();
+    private ArrayList<Card> program = new ArrayList<Card>();
+    private ArrayList<Card> cardPicked = new ArrayList<Card>();
+    private ArrayList<Card> blockCardNumber = new ArrayList<Card>();
+    private ArrayList<Card> block = new ArrayList<Card>();
     private int X;
     private int Y;
 
@@ -39,18 +42,18 @@ public class Player {
     }
 
     public void seeCardOnHand(){
-        for(Carte carte : handCards){
+        for(Card card : handCards){
             System.out.print("[   ");
-            System.out.print(carte.getCardname());
+            System.out.print(card.getCardName());
             System.out.println("   ]");
         }
     }
 
-    public ArrayList<Carte> getBlock() {
+    public ArrayList<Card> getBlock() {
         return block;
     }
 
-    public ArrayList<Carte> getHandCards() {
+    public ArrayList<Card> getHandCards() {
         return handCards;
     }
 
@@ -72,7 +75,7 @@ public class Player {
     }
 
     public void pickCardOnDeck() {
-        Carte pioche = deck.draw();
+        Card pioche = deck.draw();
         handCards.add(pioche);
     }
 
@@ -88,7 +91,7 @@ public class Player {
 
 
 
-    public void addToProgram(Player P, Carte action) {
+    public void addToProgram(Player P, Card action) {
         program.add(action);
         P.getHandCards().remove(action);
     }
@@ -105,7 +108,7 @@ public class Player {
         return this.icontest;
     }
 
-    public ArrayList<Carte> getProgram() {
+    public ArrayList<Card> getProgram() {
         return program;
     }
 
@@ -137,7 +140,7 @@ public class Player {
 //        return false;
 //    }
 //
-//    public Iterator<Carte> iterator() {
+//    public Iterator<cards.Carte> iterator() {
 //        return null;
 //    }
 //
@@ -149,7 +152,7 @@ public class Player {
 //        return null;
 //    }
 //
-//    public boolean add(Carte carte) {
+//    public boolean add(cards.Carte carte) {
 //        return false;
 //    }
 //
@@ -161,11 +164,11 @@ public class Player {
 //        return false;
 //    }
 //
-//    public boolean addAll(Collection<? extends Carte> c) {
+//    public boolean addAll(Collection<? extends cards.Carte> c) {
 //        return false;
 //    }
 //
-//    public boolean addAll(int index, Collection<? extends Carte> c) {
+//    public boolean addAll(int index, Collection<? extends cards.Carte> c) {
 //        return false;
 //    }
 //
@@ -181,19 +184,19 @@ public class Player {
 //
 //    }
 //
-//    public Carte get(int index) {
+//    public cards.Carte get(int index) {
 //        return null;
 //    }
 //
-//    public Carte set(int index, Carte element) {
+//    public cards.Carte set(int index, cards.Carte element) {
 //        return null;
 //    }
 //
-//    public void add(int index, Carte element) {
+//    public void add(int index, cards.Carte element) {
 //
 //    }
 //
-//    public Carte remove(int index) {
+//    public cards.Carte remove(int index) {
 //        return null;
 //    }
 //
@@ -205,15 +208,15 @@ public class Player {
 //        return 0;
 //    }
 //
-//    public ListIterator<Carte> listIterator() {
+//    public ListIterator<cards.Carte> listIterator() {
 //        return null;
 //    }
 //
-//    public ListIterator<Carte> listIterator(int index) {
+//    public ListIterator<cards.Carte> listIterator(int index) {
 //        return null;
 //    }
 //
-//    public List<Carte> subList(int fromIndex, int toIndex) {
+//    public List<cards.Carte> subList(int fromIndex, int toIndex) {
 //        return null;
 //    }
 }

@@ -1,10 +1,12 @@
-public class BlueCard extends Carte {
+package cards;
+
+public class BlueCard extends Card {
     public BlueCard(){
-        this.Cardname="Blue Card";
+        this.cardName ="Blue Card";
         this.description="Permet d'avancer en avant d'une case !";
     }
 
-    int[] play(String direction, int X, int Y) {
+    public int[] play(String direction, int X, int Y) {
         if(Y!=0 && direction.equals("North")){
             Y=(Y-1);
         }
@@ -22,7 +24,7 @@ public class BlueCard extends Carte {
 
     }
 
-    String play(String dir) {
+    public String play(String dir) {
         return null;
     }
 }

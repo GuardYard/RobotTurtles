@@ -1,11 +1,17 @@
+package cards;
+
+import cards.BlueCard;
+import cards.Card;
+import cards.PurpleCard;
+
 import java.util.*;
 
 public class Deck {
     private String description = "Ceci est votre deck";
-    public ArrayList<Carte> deck = new ArrayList<Carte>();
-    Carte B1 = new BlueCard();
-    Carte P1 = new PurpleCard();
-    Carte B2 = new BlueCard();
+    public ArrayList<Card> deck = new ArrayList<Card>();
+    Card B1 = new BlueCard();
+    Card P1 = new PurpleCard();
+    Card B2 = new BlueCard();
 
     public void setDeck() {
         this.deck.add(B1);
@@ -18,17 +24,17 @@ public class Deck {
     }
 
     public void showDeck(){
-        for (Carte cartes : deck) {
+        for (Card card : deck) {
             System.out.print("[");
-            System.out.print(cartes.getName());
+            System.out.print(card.getCardName());
             System.out.print(", ");
         }
     }
 
-    public Carte draw(){
-        Carte pioche = deck.get(0);
+    public Card draw(){
+        Card pioche = deck.get(0);
         deck.remove(0);
-        System.out.println("Vous avez pioché une " + pioche.Cardname);
+        System.out.println("Vous avez pioché une " + pioche.getCardName());
         return pioche;
     }
 

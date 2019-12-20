@@ -1,15 +1,17 @@
-public class PurpleCard extends Carte {
+package cards;
+
+public class PurpleCard extends Card {
     public PurpleCard(){
-        this.Cardname="Purple Card";
+        this.cardName ="Purple Card";
         this.description="Permet de tourner à droite (l'action d'avancer n'est pas comprise avec cette carte)";
     }
 
 
-    int[] play(String direction, int X, int Y) {
+    public int[] play(String direction, int X, int Y) {
         return new int[0];
     }
 
-    String play(String dir) {
+    public String play(String dir) {
         String direction = "";
         if(dir.equals("North")){
             direction = "East";

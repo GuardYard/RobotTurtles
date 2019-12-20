@@ -1,4 +1,7 @@
-import javax.xml.stream.FactoryConfigurationError;
+package game;
+
+import cards.Card;
+
 import java.util.*;
 
 public class Game {
@@ -46,29 +49,29 @@ public class Game {
         if(P == 2) {
             for (int i = 0; i < 2; i++) {
                 Player P1 = new Player();
-                this.Joueur.add();
+                // this.Joueur.add();
             }
         }
     }
 
     public void execute(Player P){
-        for (Carte carte : P.getHandCards()){
-            if (carte.getCardname().equals("Blue Card")){
+        for (Card card : P.getHandCards()){
+            if (card.getCardName().equals("Blue Card")){
                 int x = P.getX();
                 int y = P.getY();
                 removeCell(x,y);
-                int [] newpos = carte.play(P.getDirection(), x, y);
+                int [] newpos = card.play(P.getDirection(), x, y);
                 int x2 = newpos[0];
                 int y2 = newpos[1];
                 P.setpositon(x2,y2);
                 setCell(P.getIcontest(), x2, y2);
 
             }
-            else if (carte.getCardname().equals("Purple Card") || carte.getCardname().equals("Yellow Card")){
+            else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){
                 int x = P.getX();
                 int y = P.getY();
                 removeCell(x,y);
-                String newdir = carte.play(P.getDirection());
+                String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
             }
         }
