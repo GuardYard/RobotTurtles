@@ -10,7 +10,7 @@ public class Deck {
     private String description = "Ceci est votre deck";
     public ArrayList<Card> deck = new ArrayList<Card>();
     Card B1 = new BlueCard();
-    Card P1 = new PurpleCard();
+    Card P1 = new YellowCard();
     Card B2 = new BlueCard();
 
     public void setDeck() {

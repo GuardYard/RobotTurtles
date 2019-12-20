@@ -34,7 +34,7 @@ public class Game {
     }
 
 
-    public void viewCell() {
+    public void viewCell() { //F
         for (int i = 0; i < Cell.length; i++) {
             System.out.print("[");
             for (String[] strings : Cell) {
@@ -46,6 +46,7 @@ public class Game {
     }
 
     private void addPlayer(int P){
+        //PF
         if(P == 2) {
             for (int i = 0; i < 2; i++) {
                 Player P1 = new Player();
@@ -55,7 +56,7 @@ public class Game {
     }
 
     public void execute(Player P){
-        for (Card card : P.getHandCards()){
+        for (Card card : P.getHandCards()){ //PF =>
             if (card.getCardName().equals("Blue Card")){
                 int x = P.getX();
                 int y = P.getY();
