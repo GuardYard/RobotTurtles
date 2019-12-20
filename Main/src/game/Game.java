@@ -56,19 +56,19 @@ public class Game {
     }
 
     public void execute(Player P){
-        for (Card card : P.getHandCards()){ //PF =>
+        for (Card card : P.getHandCards()){ //PF => getHandCards() : getProgram
             if (card.getCardName().equals("Blue Card")){
                 int x = P.getX();
                 int y = P.getY();
                 removeCell(x,y);
-                int [] newpos = card.play(P.getDirection(), x, y);
+                int [] newpos = card.playBlue(P.getDirection(), x, y);
                 int x2 = newpos[0];
                 int y2 = newpos[1];
                 P.setpositon(x2,y2);
                 setCell(P.getIcontest(), x2, y2);
 
             }
-            else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){
+            else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){         //Change la direction du player
                 int x = P.getX();
                 int y = P.getY();
                 removeCell(x,y);

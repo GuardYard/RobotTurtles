@@ -7,7 +7,7 @@ public class PurpleCard extends Card {
     }
 
 
-    public int[] play(String direction, int X, int Y) {
+    public int[] playBlue(String direction, int X, int Y) {
         return new int[0];
     }
 

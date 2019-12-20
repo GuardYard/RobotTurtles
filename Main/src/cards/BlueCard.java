@@ -6,7 +6,7 @@ public class BlueCard extends Card {
         this.description="Permet d'avancer en avant d'une case !";
     }
 
-    public int[] play(String direction, int X, int Y) {
+    public int[] playBlue(String direction, int X, int Y) {
         if(Y!=0 && direction.equals("North")){
             Y=(Y-1);
         }

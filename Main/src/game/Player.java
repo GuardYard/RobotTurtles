@@ -8,7 +8,7 @@ import java.util.*;
 public class Player {
     private String icontest = "";
     private String color = "";
-    private int passageOrder;
+    private int passageOrder;//Random order
     private String name = "";
     private String direction = "";
     private ArrayList<Card> handCards = new ArrayList<Card>();
@@ -26,7 +26,6 @@ public class Player {
     public void Player1() {
         this.icontest = "  P1 ";
         this.color = "Red";
-        this.passageOrder = 0;
         this.direction = "South";
         this.deck.setDeck();
 
@@ -35,7 +34,6 @@ public class Player {
     public void Player2() {
         this.icontest = "  P2  ";
         this.color = "Blue";
-        this.passageOrder = 0;
         this.direction = "South";
         this.deck.setDeck();
     }
@@ -43,12 +41,11 @@ public class Player {
     public void Player3() {
         this.icontest = "  P2  ";
         this.color = "Blue";
-        this.passageOrder = 0;
         this.direction = "South";
         this.deck.setDeck();
     }
 
-    public void seeCardOnHand(){
+    public void seeCardOnHand(){            //F
         for(Card card : handCards){
             System.out.print("[   ");
             System.out.print(card.getCardName());
@@ -56,37 +53,37 @@ public class Player {
         }
     }
 
-    public ArrayList<Card> getBlock() {
+    public ArrayList<Card> getBlock() {     //F
         return block;
     }
 
-    public ArrayList<Card> getHandCards() {
+    public ArrayList<Card> getHandCards() {         //F
         return handCards;
     }
 
-    public void setpositon(int xtemp, int ytemp){
+    public void setpositon(int xtemp, int ytemp){       //F
         this.X = xtemp;
         this.Y = ytemp;
     }
 
     public int getX() {
         return X;
-    }
+    }       //F
 
     public int getY() {
         return Y;
-    }
+    }       //F
 
-    public void setName(String name) {
+    public void setName(String name) {      //F
         this.name = name;
     }
 
-    public void pickCardOnDeck() {
+    public void pickCardOnDeck() {      //F
         Card pioche = deck.draw();
-        handCards.add(pioche);
+        handCards.add(pioche);          //Supprimer carte dans deck
     }
 
-    public void verifHand(Player P){
+    public void verifHand(Player P){            //A vérifier- dp we need an else
         int f  = P.getHandCards().size();
         if (f<5){
             int nbPioche = 5-f;
@@ -98,7 +95,7 @@ public class Player {
 
 
 
-    public void addToProgram(Player P, Card action) {
+    public void addToProgram(Player P, Card action) {           //PF- what order does the player want
         program.add(action);
         P.getHandCards().remove(action);
     }
@@ -107,14 +104,14 @@ public class Player {
 
     }
 
-    public String getName() {
+    public String getName() {           //F
         return this.name;
     }
 
-    public String getIcontest() {
+    public String getIcontest() {           //F
         return this.icontest;
     }
-
+// no use-just for calling
     public ArrayList<Card> getProgram() {
         return program;
     }
@@ -130,10 +127,11 @@ public class Player {
     public int getPassageOrder() {
         return this.passageOrder;
     }
-
-    public void setDirection(String direction) {
+//end
+    public void setDirection(String direction) {        //F
         this.direction = direction;
     }
+
 
     //    public int size() {
 //        return 0;
