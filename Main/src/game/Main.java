@@ -2,11 +2,10 @@ package game;
 
 import java.util.*;
 
-public class Main {
+public class main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
 
         Game game = new Game();
         System.out.println("Quel le nom du joueur 1?");
