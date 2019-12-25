@@ -46,13 +46,52 @@ public class Game {
     }
 
     private void addPlayer(int P){
-        //PF
+        //F
         if(P == 2) {
-            for (int i = 0; i < 2; i++) {
-                Player P1 = new Player();
-                // this.Joueur.add();
-            }
+            Player P1 = new Player();
+            Player P2 = new Player();
+            P1.Player1();
+            P2.Player2();
+            P1.setpositon(1,0);
+            P2.setpositon(5,0);
+            this.Joueur.add(P1);
+            this.Joueur.add(P2);
         }
+
+        if(P == 3){
+            Player P1 = new Player();
+            Player P2 = new Player();
+            Player P3 = new Player();
+            P1.Player1();
+            P2.Player2();
+            P3.Player3();
+            P1.setpositon(0,0);
+            P2.setpositon(3,0);
+            P3.setpositon(6,0);
+            this.Joueur.add(P1);
+            this.Joueur.add(P2);
+            this.Joueur.add(P3);
+        }
+
+        if(P == 4){
+            Player P1 = new Player();
+            Player P2 = new Player();
+            Player P3 = new Player();
+            Player P4 = new Player();
+            P1.Player1();
+            P2.Player2();
+            P3.Player3();
+            P4.Player4();
+            P1.setpositon(0,0);
+            P2.setpositon(2,0);
+            P3.setpositon(5,0);
+            P4.setpositon(7,0);
+            this.Joueur.add(P1);
+            this.Joueur.add(P2);
+            this.Joueur.add(P3);
+            this.Joueur.add(P4);
+        }
+
     }
 
     public void execute(Player P){

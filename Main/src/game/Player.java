@@ -39,8 +39,15 @@ public class Player {
     }
 
     public void Player3() {
-        this.icontest = "  P2  ";
-        this.color = "Blue";
+        this.icontest = "  P3  ";
+        this.color = "Green";
+        this.direction = "South";
+        this.deck.setDeck();
+    }
+
+    public void Player4() {
+        this.icontest = "  P4  ";
+        this.color = "Pink";
         this.direction = "South";
         this.deck.setDeck();
     }
