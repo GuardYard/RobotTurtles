@@ -2,6 +2,7 @@ package game;
 
 import cards.Card;
 import cards.Deck;
+import java.util.*;
 
 import java.util.*;
 
@@ -110,6 +111,13 @@ public class Player {
     public void setBlock() {
 
     }
+    public void setDirection(String direction) {        //F
+        this.direction = direction;
+    }
+
+    public void setPassageOrder(int passageOrder) {
+        this.passageOrder = passageOrder;
+    }
 
     public String getName() {           //F
         return this.name;
@@ -131,13 +139,11 @@ public class Player {
         return this.direction;
     }
 
+
     public int getPassageOrder() {
         return this.passageOrder;
     }
 //end
-    public void setDirection(String direction) {        //F
-        this.direction = direction;
-    }
 
 
     //    public int size() {

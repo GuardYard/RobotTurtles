@@ -13,12 +13,14 @@ public class Game {
     public String[][] getCell() {
         return Cell;
     }
+
+
     public void init(){
         int nbJoueur;
         do {
             System.out.println("Combien de joueur? (2, 3 ou 4)");
             nbJoueur = sc.nextInt();
-            switch (nbJoueur) {
+            switch (nbJoueur) {  //Le switch ne sert à rien, c'est juste pour les tests
                 case 2:
                     System.out.println(1);
                     break;
@@ -33,6 +35,18 @@ public class Game {
         addPlayer(nbJoueur);
     }
 
+    public ArrayList<Player> initOrder(ArrayList<Player> JoueurBis){
+        ArrayList<Player> SortedP = new ArrayList<Player>();
+        if(SortedP.size() < JoueurBis.size()){
+            for(Player P : JoueurBis){
+                if (P.getPassageOrder() == SortedP.size()){
+                    SortedP.add(P);
+                    JoueurBis.remove(P);
+                }
+            }
+        }
+        return SortedP;
+    }
 
     public void viewCell() { //F
         for (int i = 0; i < Cell.length; i++) {
@@ -47,6 +61,7 @@ public class Game {
 
     private void addPlayer(int P){
         //F
+        ArrayList<Integer> NbO = new ArrayList<Integer>();
         if(P == 2) {
             Player P1 = new Player();
             Player P2 = new Player();
@@ -54,11 +69,16 @@ public class Game {
             P2.Player2();
             P1.setpositon(1,0);
             P2.setpositon(5,0);
+            NbO.add(0);
+            NbO.add(1);
+            Collections.shuffle(NbO);
+            P1.setPassageOrder(NbO.get(0));
+            P2.setPassageOrder(NbO.get(1));
             this.Joueur.add(P1);
             this.Joueur.add(P2);
         }
 
-        if(P == 3){
+        else if(P == 3){
             Player P1 = new Player();
             Player P2 = new Player();
             Player P3 = new Player();
@@ -68,12 +88,19 @@ public class Game {
             P1.setpositon(0,0);
             P2.setpositon(3,0);
             P3.setpositon(6,0);
+            NbO.add(0);
+            NbO.add(1);
+            NbO.add(2);
+            Collections.shuffle(NbO);
+            P1.setPassageOrder(NbO.get(0));
+            P2.setPassageOrder(NbO.get(1));
+            P3.setPassageOrder(NbO.get(2));
             this.Joueur.add(P1);
             this.Joueur.add(P2);
             this.Joueur.add(P3);
         }
 
-        if(P == 4){
+        else if(P == 4){
             Player P1 = new Player();
             Player P2 = new Player();
             Player P3 = new Player();
@@ -86,6 +113,15 @@ public class Game {
             P2.setpositon(2,0);
             P3.setpositon(5,0);
             P4.setpositon(7,0);
+            NbO.add(0);
+            NbO.add(1);
+            NbO.add(2);
+            NbO.add(3);
+            Collections.shuffle(NbO);
+            P1.setPassageOrder(NbO.get(0));
+            P2.setPassageOrder(NbO.get(1));
+            P3.setPassageOrder(NbO.get(2));
+            P4.setPassageOrder(NbO.get(3));
             this.Joueur.add(P1);
             this.Joueur.add(P2);
             this.Joueur.add(P3);
@@ -93,6 +129,7 @@ public class Game {
         }
 
     }
+
 
     public void execute(Player P){
         for (Card card : P.getHandCards()){ //PF => getHandCards() : getProgram
