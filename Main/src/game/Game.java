@@ -9,6 +9,7 @@ public class Game {
 
     private ArrayList<Player> Joueur = new ArrayList<Player>();
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
+    private int victoryV;
 
     public String[][] getCell() {
         return Cell;
@@ -37,11 +38,11 @@ public class Game {
 
     public ArrayList<Player> initOrder(ArrayList<Player> JoueurBis){
         ArrayList<Player> SortedP = new ArrayList<Player>();
-        if(SortedP.size() < JoueurBis.size()){
+        int sizeListP = JoueurBis.size();
+        while(SortedP.size() < sizeListP){
             for(Player P : JoueurBis){
                 if (P.getPassageOrder() == SortedP.size()){
                     SortedP.add(P);
-                    JoueurBis.remove(P);
                 }
             }
         }
@@ -128,6 +129,12 @@ public class Game {
             this.Joueur.add(P4);
         }
 
+        for(Player elem : this.Joueur){
+            System.out.println("Quel est le nom du joueur " + elem.getName() + " ?");
+            String name = sc.nextLine();
+            elem.setName(name);
+        }
+        setJoueur(initOrder(this.Joueur));
     }
 
 
@@ -145,14 +152,19 @@ public class Game {
 
             }
             else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){         //Change la direction du player
-                int x = P.getX();
-                int y = P.getY();
-                removeCell(x,y);
                 String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
             }
         }
 
+    }
+
+    private void setVictoryV(int victoryV) {
+        this.victoryV = victoryV;
+    }
+
+    private void setJoueur(ArrayList<Player> joueur) {
+        Joueur = joueur;
     }
 
     private void removeCell(int x, int y) {
