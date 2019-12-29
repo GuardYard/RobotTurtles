@@ -27,6 +27,9 @@ public class Deck {
         for(int i=0; i<3; i++) {
             this.deck.add(L);
         }
+        Collections.shuffle(this.deck);
+        Collections.shuffle(this.deck);
+        Collections.shuffle(this.deck);
     }
 
     public String getDescription(){
