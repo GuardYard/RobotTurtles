@@ -31,7 +31,7 @@ public class Deck {
         }
     }
 
-    public Card draw(){         //A refaire
+    public Card draw(){         //F
         Card pioche = deck.get(0);
         deck.remove(0);
         System.out.println("Vous avez pioché une " + pioche.getCardName());

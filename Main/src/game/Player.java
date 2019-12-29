@@ -100,7 +100,7 @@ public class Player {
 
     public void pickCardOnDeck() {      //F
         Card pioche = deck.draw();
-        handCards.add(pioche);          //Supprimer carte dans deck
+        handCards.add(pioche);
     }
 
     public void verifHand(Player P){            //A vérifier- dp we need an else

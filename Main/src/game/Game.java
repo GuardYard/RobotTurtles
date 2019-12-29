@@ -50,9 +50,13 @@ public class Game {
                 else if(commande == 2){
                     execute(player);
                     viewCell();
+                    //Fonction qui vérifie la victoire et change la valeur de victoryV (victoryV = 1 ===> Victoire)
                 }
                 else if(commande == 3){
-
+                    //Fonction pour afficher les obstacles dont on dispose
+                    //Fonction pour poser des obstacle
+                    //Montre le nouveau plateau
+                    viewCell();
                 }
             }
         }while(victoryV == 0);
