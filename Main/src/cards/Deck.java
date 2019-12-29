@@ -9,14 +9,24 @@ import java.util.*;
 public class Deck {
     private String description = "Ceci est votre deck";
     public ArrayList<Card> deck = new ArrayList<Card>();
-    Card B1 = new BlueCard();
-    Card P1 = new YellowCard();
-    Card B2 = new BlueCard();
+    Card B = new BlueCard();
+    Card P = new PurpleCard();
+    Card Y = new YellowCard();
+    Card L = new LaserCard();
 
     public void setDeck() {
-        this.deck.add(B1);
-        this.deck.add(P1);
-        this.deck.add(B2);
+        for(int i=0; i<18;i++){
+            this.deck.add(B);
+        }
+        for(int i=0; i<8; i++) {
+            this.deck.add(P);
+        }
+        for(int i=0; i<8; i++) {
+            this.deck.add(Y);
+        }
+        for(int i=0; i<3; i++) {
+            this.deck.add(L);
+        }
     }
 
     public String getDescription(){
@@ -24,11 +34,12 @@ public class Deck {
     }       //F
 
     public void showDeck(){         //F
+        System.out.print("[   ");
         for (Card card : deck) {
-            System.out.print("[");
             System.out.print(card.getCardName());
-            System.out.print(", ");
+            System.out.println(", ");
         }
+        System.out.println("   ]");
     }
 
     public Card draw(){         //F

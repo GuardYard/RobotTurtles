@@ -57,6 +57,10 @@ public class Player {
         this.deck.setDeck();
     }
 
+    public Deck getDeck() {
+        return deck;
+    }
+
     public void seeCardOnHand(){            //F
         System.out.print("[   ");
         for(Card card : handCards){

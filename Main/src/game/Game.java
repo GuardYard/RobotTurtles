@@ -19,6 +19,7 @@ public class Game {
 
     public void init(){
         int nbJoueur;
+        //Fonction de rappel les règles d'un jeu.
         do {
             System.out.println("Combien de joueur? (2, 3 ou 4)");
             nbJoueur = sc.nextInt();
@@ -45,7 +46,7 @@ public class Game {
                     commande = sc.nextInt();
                 } while (commande != 1 && commande != 2 && commande != 3);
                 if(commande == 1){
-
+                    //Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main et demande un
                 }
                 else if(commande == 2){
                     execute(player);
@@ -54,8 +55,8 @@ public class Game {
                 }
                 else if(commande == 3){
                     //Fonction pour afficher les obstacles dont on dispose
-                    //Fonction pour poser des obstacle
-                    //Montre le nouveau plateau
+                    //Fonction pour poser des obstacles
+                    //Montre le nouveau plateau :
                     viewCell();
                 }
             }
