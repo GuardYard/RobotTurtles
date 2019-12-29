@@ -10,6 +10,7 @@ public class Game {
     private ArrayList<Player> Joueur = new ArrayList<Player>();
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
     private int victoryV;
+    private int nbTurn;
 
     public String[][] getCell() {
         return Cell;
@@ -21,19 +22,40 @@ public class Game {
         do {
             System.out.println("Combien de joueur? (2, 3 ou 4)");
             nbJoueur = sc.nextInt();
-            switch (nbJoueur) {  //Le switch ne sert à rien, c'est juste pour les tests
-                case 2:
-                    System.out.println(1);
-                    break;
-                case 3:
-                    System.out.println(2);
-                    break;
-                case 4:
-                    System.out.println(3);
-                    break;
-            }
-        } while (nbJoueur != 2 && nbJoueur != 3 && nbJoueur != 4);
+        } while(nbJoueur != 2 && nbJoueur != 3 && nbJoueur != 4);
         addPlayer(nbJoueur);
+        viewCell();
+    }
+
+    public void turn(){
+        do {
+            for (Player player : this.Joueur) {
+
+
+                //faire ici une fonction qui verifie le nombre de cartes dans la main du joueur
+                //si la main n'a pas 5 cartes faire piocher
+
+
+                int commande = 0;
+                do {
+                    System.out.println("C'est au tour de " + player.getName() + ". Veuillez choisir une action à effectuer.");
+                    System.out.println("Préparer vos déplacements   :   1");
+                    System.out.println("Executer                    :   2");
+                    System.out.println("Poser des obstacles         :   3");
+                    commande = sc.nextInt();
+                } while (commande != 1 && commande != 2 && commande != 3);
+                if(commande == 1){
+
+                }
+                else if(commande == 2){
+                    execute(player);
+                    viewCell();
+                }
+                else if(commande == 3){
+
+                }
+            }
+        }while(victoryV == 0);
     }
 
     public ArrayList<Player> initOrder(ArrayList<Player> JoueurBis){
@@ -54,7 +76,7 @@ public class Game {
             System.out.print("[");
             for (String[] strings : Cell) {
                 System.out.print(strings[i]);
-                System.out.print(",");
+                System.out.print(", ");
             }
             System.out.println("]");
         }
@@ -136,6 +158,7 @@ public class Game {
         }
         setJoueur(initOrder(this.Joueur));
     }
+
 
 
     public void execute(Player P){

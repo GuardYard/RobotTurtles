@@ -58,11 +58,19 @@ public class Player {
     }
 
     public void seeCardOnHand(){            //F
+        System.out.print("[   ");
         for(Card card : handCards){
-            System.out.print("[   ");
             System.out.print(card.getCardName());
-            System.out.println("   ]");
         }
+        System.out.println("   ]");
+    }
+
+    public void seeCardOnProgram(){            //F
+        System.out.print("[   ");
+        for(Card card : program){
+            System.out.print(card.getCardName());
+        }
+        System.out.println("   ]");
     }
 
     public ArrayList<Card> getBlock() {     //F
@@ -107,7 +115,7 @@ public class Player {
 
 
 
-    public void addToProgram(Player P, Card action) {           //PF- what order does the player want
+    public void addToProgram(Player P, Card action) {  //PF- what order does the player want
         program.add(action);
         P.getHandCards().remove(action);
     }
