@@ -94,8 +94,8 @@ public class Game {
             Player P1 = new Player();
             Player P2 = new Player();
             Jewel J1 = new Jewel();
-            J1.setX = 3;
-            J1.setY = 7;
+            J1.setX(3);
+            J1.setY(7);
             this.setCell(J1.getIcon(), J1.getX(),J1.getY());
             P1.Player1();
             P2.Player2();
