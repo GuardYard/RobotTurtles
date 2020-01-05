@@ -93,6 +93,8 @@ public class Game {
         if(P == 2) {
             Player P1 = new Player();
             Player P2 = new Player();
+            Jewel J1 = new Jewel();
+            this.setCell(Jewel.icon, 3,7);
             P1.Player1();
             P2.Player2();
             P1.setpositon(1,0);
