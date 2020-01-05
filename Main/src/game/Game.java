@@ -96,7 +96,7 @@ public class Game {
             Jewel J1 = new Jewel();
             J1.setX = 3;
             J1.setY = 7;
-            this.setCell(J1.getIcon(), J1.getX(),J2.getY());
+            this.setCell(J1.getIcon(), J1.getX(),J1.getY());
             P1.Player1();
             P2.Player2();
             P1.setpositon(1,0);
