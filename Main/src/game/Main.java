@@ -66,9 +66,15 @@ public class Main {
 //            System.out.print(f.getName() + ",");
 //        }
 // //       System.out.println("   ]");
-    Player P1 = new Player();
-    P1.Player1();
-    P1.getDeck().showDeck();
+// Player P1 = new Player();
+// P1.Player1();
+// P1.getDeck().showDeck();
+        Game Jeu = new Game();
+        Jeu.viewCell();
+        String icon = "  *  ";
+        Jeu.setCell(icon, 3,7);
+        System.out.println();
+        Jeu.viewCell();
     }
 
 }

@@ -3,7 +3,7 @@ package cards;
 public class BlueCard extends Card {
     public BlueCard() {
         this.cardName = "Blue Card";
-        this.description = "Permet d'avancer en avant d'une case !";
+        this.description = "Permet d'avancer en avant d'une case !"; //anlagis?
     }
 
     public int[] playBlue(String direction, int X, int Y) {
