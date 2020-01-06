@@ -192,6 +192,7 @@ public class Game {
         for(Player elem : this.Joueur){
             System.out.println("Quel est le nom du joueur " + elem.getName() + " ?");
             String name = sc.nextLine();
+            sc.nextLine();
             elem.setName(name);
         }
         setJoueur(initOrder(this.Joueur));
