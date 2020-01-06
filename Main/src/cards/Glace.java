@@ -11,6 +11,7 @@ public class Glace extends Obstacles {
         this.cardName = "Glace Card";
         this.description = "Permet de posser un obstacle";
         this.destructible="destructible avec un lazer!";
+        this.icon="glace ";
     }
 
     public int[] play() {

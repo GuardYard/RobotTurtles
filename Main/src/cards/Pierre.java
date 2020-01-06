@@ -11,6 +11,7 @@ public class Pierre extends Obstacles {
         this.cardName ="Pierre Card";
         this.description="Permet de posser un obstacle";
         this.destructible="indestructible !";
+        this.icon="pierre";
     }
 
 

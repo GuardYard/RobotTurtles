@@ -1,7 +1,7 @@
 package game;
 
-import cards.Card;
-import cards.Deck;
+import cards.*;
+
 import java.util.*;
 
 import java.util.*;
@@ -16,7 +16,7 @@ public class Player {
     private ArrayList<Card> program = new ArrayList<Card>();
     private ArrayList<Card> cardPicked = new ArrayList<Card>();
     private ArrayList<Card> blockCardNumber = new ArrayList<Card>();
-    private ArrayList<Card> block = new ArrayList<Card>();
+    private ArrayList<Obstacles> block = new ArrayList<Obstacles>();
     private int X;
     private int Y;
 
@@ -88,7 +88,7 @@ public class Player {
         System.out.println("   ]");
     }
 
-    public ArrayList<Card> getBlock() {     //F
+    public ArrayList<Obstacles> getBlock() {     //F
         return block;
     }
 
@@ -170,6 +170,21 @@ public class Player {
     public int getPassageOrder() {
         return this.passageOrder;
     }
+
+    public void initObstacle(){
+        Obstacles cartep = new Pierre();
+        Obstacles carteg = new Glace();
+        //pierre
+        for ( int ii = 0 ; ii < 20; ii++){
+            this.block.add(cartep);
+        }
+        for ( int ii = 0 ; ii < 12; ii++){
+            this.block.add(carteg);
+        }
+
+    }
+
+
 //end
 
 

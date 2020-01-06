@@ -1,6 +1,7 @@
 package game;
 
 import cards.Card;
+import cards.Obstacles;
 
 import java.util.*;
 
@@ -56,6 +57,11 @@ public class Game {
                 }
                 else if(commande == 3){
                     //Fonction pour afficher les obstacles dont on dispose
+                    //player.getBlock().get(0).play();
+                    int [] position = player.getBlock().get(0).play();
+                    System.out.println(position[0]);
+                    System.out.println(position[1]);
+                    setCell(player.getBlock().get(0).getIcon(), position[0], position[1]);
                     //Fonction pour poser des obstacles
                     //Montre le nouveau plateau :
                     viewCell();
@@ -120,6 +126,8 @@ public class Game {
 //            this.setCell(J1.getIcon(), J1.getX(),J1.getY());
             P1.Player1();
             P2.Player2();
+            P1.initObstacle();
+            P2.initObstacle();
             P1.setpositon(1,0);
             P2.setpositon(5,0);
             NbO.add(0);
@@ -208,6 +216,16 @@ public class Game {
                 String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
             }
+        }
+
+    }
+
+    public void executeObstacles(Player P){
+        for (Obstacles card : P.getBlock()){
+            int [] position = card.play();
+            System.out.println(position[0]);
+            System.out.println(position[1]);
+            setCell(card.getIcon(), position[0], position[1]);
         }
 
     }

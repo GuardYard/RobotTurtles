@@ -8,6 +8,7 @@ public abstract class Obstacles {
     String description;
     String cardName;
     String destructible;
+    String icon;
 
     public String getCardName(){
         return this.cardName;
@@ -15,4 +16,7 @@ public abstract class Obstacles {
 
     public abstract int[] play();
 
+    public String getIcon() {
+        return icon;
+    }
 }

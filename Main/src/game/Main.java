@@ -70,11 +70,9 @@ public class Main {
 // P1.Player1();
 // P1.getDeck().showDeck();
         Game Jeu = new Game();
-        Jeu.viewCell();
-        String icon = "  *  ";
-        Jeu.setCell(icon, 3,7);
-        System.out.println();
-        Jeu.viewCell();
+        Jeu.init();
+        Jeu.turn();
+
     }
 
 }
