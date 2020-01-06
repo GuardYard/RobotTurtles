@@ -1,6 +1,8 @@
 package cards;
 //chaque joueur doit avoir 2
-public class Glace extends Card {
+
+//interdit de bloquer l’accès aux joyaux & d’encercler un joyau ou un autre joueur
+public class Glace extends Obstacles {
 
     //test
     public Glace() {
