@@ -188,11 +188,10 @@ public class Game {
             this.Joueur.add(P3);
             this.Joueur.add(P4);
         }
-
+        sc.nextLine();
         for(Player elem : this.Joueur){
             System.out.println("Quel est le nom du joueur " + elem.getName() + " ?");
             String name = sc.nextLine();
-            sc.nextLine();
             elem.setName(name);
         }
         setJoueur(initOrder(this.Joueur));
@@ -224,8 +223,6 @@ public class Game {
     public void executeObstacles(Player P){
         for (Obstacles card : P.getBlock()){
             int [] position = card.play();
-            System.out.println(position[0]);
-            System.out.println(position[1]);
             setCell(card.getIcon(), position[0], position[1]);
         }
 
