@@ -80,6 +80,18 @@ public class Player {
         System.out.println("   ]");
     }
 
+    public void seeObstacleOnHand(){            //F
+        System.out.print("[   ");
+        int i = 0;
+        for(Obstacles card : block){
+            System.out.println(i +" : "+ card.getCardName()+" ,");
+            i++;
+            }
+
+        System.out.println("   ]");
+    }
+
+
     public void seeCardOnProgram(){            //F
         System.out.print("[   ");
         for(Card card : program){

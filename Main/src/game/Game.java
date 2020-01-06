@@ -58,6 +58,9 @@ public class Game {
                 else if(commande == 3){
                     //Fonction pour afficher les obstacles dont on dispose
                     //player.getBlock().get(0).play();
+                    player.seeObstacleOnHand();
+                    System.out.println("veuillez choisir quelle obstacle vous voulez");
+
                     int [] position = player.getBlock().get(0).play();
                     System.out.println(position[0]);
                     System.out.println(position[1]);
