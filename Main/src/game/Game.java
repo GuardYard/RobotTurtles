@@ -56,15 +56,8 @@ public class Game {
                     //Fonction qui vérifie la victoire et change la valeur de victoryV (victoryV = 1 ===> Victoire)
                 }
                 else if(commande == 3){
-                    //Fonction pour afficher les obstacles dont on dispose
-                    //player.getBlock().get(0).play();
                     player.seeObstacleOnHand();
-                    System.out.println("veuillez choisir quelle obstacle vous voulez");
-
-                    int [] position = player.getBlock().get(0).play();
-                    System.out.println(position[0]);
-                    System.out.println(position[1]);
-                    setCell(player.getBlock().get(0).getIcon(), position[0], position[1]);
+                    executeObstacles(player);
                     //Fonction pour poser des obstacles
                     //Montre le nouveau plateau :
                     viewCell();
@@ -149,6 +142,9 @@ public class Game {
             P1.Player1();
             P2.Player2();
             P3.Player3();
+            P1.initObstacle();
+            P2.initObstacle();
+            P3.initObstacle();
             P1.setpositon(0,0);
             P2.setpositon(3,0);
             P3.setpositon(6,0);
@@ -173,6 +169,10 @@ public class Game {
             P2.Player2();
             P3.Player3();
             P4.Player4();
+            P1.initObstacle();
+            P2.initObstacle();
+            P3.initObstacle();
+            P4.initObstacle();
             P1.setpositon(0,0);
             P2.setpositon(2,0);
             P3.setpositon(5,0);
@@ -224,11 +224,19 @@ public class Game {
     }
 
     public void executeObstacles(Player P){
-        for (Obstacles card : P.getBlock()){
-            int [] position = card.play();
-            setCell(card.getIcon(), position[0], position[1]);
+        int pos;
+        do {
+            System.out.println("Veuillez choisir quelle obstacle vous voulez");
+            pos = sc.nextInt();
+        }while(pos>P.getBlock().size());
+        int [] position = P.getBlock().get(pos).play();
+        if(!this.getCell(position[0], position[1]).equals("     ")) {
+            System.out.println("Cette case est déjà occupé, veuillez réessayer?");
+            executeObstacles(P);
+        }else {
+            setCell(P.getBlock().get(pos).getIcon(), position[0], position[1]);
+            P.getBlock().remove(pos);
         }
-
     }
 
     private void setVictoryV(int victoryV) {
@@ -245,5 +253,9 @@ public class Game {
 
     public void setCell(String icon, int x, int y){
         Cell[x][y] = icon;
+    }
+    public String getCell(int x, int y){
+        String str = Cell[x][y];
+        return str;
     }
 }

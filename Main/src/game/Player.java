@@ -187,13 +187,12 @@ public class Player {
         Obstacles cartep = new Pierre();
         Obstacles carteg = new Glace();
         //pierre
-        for ( int ii = 0 ; ii < 20; ii++){
+        for ( int ii = 0 ; ii < 3; ii++){
             this.block.add(cartep);
         }
-        for ( int ii = 0 ; ii < 12; ii++){
+        for ( int ii = 0 ; ii < 2; ii++){
             this.block.add(carteg);
         }
-
     }
 
 
