@@ -46,6 +46,7 @@ public class Game {
                     commande = sc.nextInt();
                 } while (commande != 1 && commande != 2 && commande != 3);
                 if(commande == 1){
+                    prepare(player);
                     //Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main et demande un
                 }
                 else if(commande == 2){
@@ -63,7 +64,27 @@ public class Game {
         }while(victoryV == 0);
     }
 
-    public ArrayList<Player> initOrder(ArrayList<Player> JoueurBis){
+    private void prepare(Player player) {
+        System.out.println("Voici votre jeu !");
+        player.seeCardOnHand();
+        int finishPrep = 0;
+            do{
+                int chosenCard;
+                do {
+                    player.seeCardOnHand();
+                    System.out.println("Choisissez l'ordre dans lequel vous voulez executer votre programme (1 : Premier carte de votre main, 2 : Deuxieme carte, etc...)");
+                    chosenCard = sc.nextInt();
+                    //fonction d'ajout de la carte au programme.
+                }while (chosenCard >= 0 && chosenCard <= player.getHandCards().size());
+                String choixContinue ="";
+                do {
+                    System.out.println("Voulez-vous continuer a mettre des cartes dans votre programme? (Oui : O; Non : N)");
+                    choixContinue = sc.nextLine();
+                }while (!choixContinue.equals("O") && !choixContinue.equals("N"));
+            }while(finishPrep == 0);
+    }
+
+    private ArrayList<Player> initOrder(ArrayList<Player> JoueurBis){
         ArrayList<Player> SortedP = new ArrayList<Player>();
         int sizeListP = JoueurBis.size();
         while(SortedP.size() < sizeListP){
@@ -87,16 +108,16 @@ public class Game {
         }
     }
 
-    private void addPlayer(int P){
+    public void addPlayer(int P){
         //F
         ArrayList<Integer> NbO = new ArrayList<Integer>();
         if(P == 2) {
             Player P1 = new Player();
             Player P2 = new Player();
             Jewel J1 = new Jewel();
-            J1.setX(3);
-            J1.setY(7);
-            this.setCell(J1.getIcon(), J1.getX(),J1.getY());
+//            J1.setX(3);
+//            J1.setY(7);
+//            this.setCell(J1.getIcon(), J1.getX(),J1.getY());
             P1.Player1();
             P2.Player2();
             P1.setpositon(1,0);

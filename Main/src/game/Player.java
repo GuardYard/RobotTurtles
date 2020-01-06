@@ -30,7 +30,9 @@ public class Player {
         this.color = "Red";
         this.direction = "South";
         this.deck.setDeck();
-
+        for(int i=0; i<5; i++){
+        this.deck.draw();
+        }
     }
 
     public void Player2() {
@@ -39,6 +41,9 @@ public class Player {
         this.color = "Blue";
         this.direction = "South";
         this.deck.setDeck();
+        for(int i=0; i<5; i++){
+            this.deck.draw();
+        }
     }
 
     public void Player3() {
@@ -47,6 +52,9 @@ public class Player {
         this.color = "Green";
         this.direction = "South";
         this.deck.setDeck();
+        for(int i=0; i<5; i++){
+            this.deck.draw();
+        }
     }
 
     public void Player4() {
@@ -55,6 +63,9 @@ public class Player {
         this.color = "Pink";
         this.direction = "South";
         this.deck.setDeck();
+        for(int i=0; i<5; i++){
+            this.deck.draw();
+        }
     }
 
     public Deck getDeck() {
@@ -72,7 +83,7 @@ public class Player {
     public void seeCardOnProgram(){            //F
         System.out.print("[   ");
         for(Card card : program){
-            System.out.print(card.getCardName());
+            System.out.print(card.getCardName() + " ;");
         }
         System.out.println("   ]");
     }
