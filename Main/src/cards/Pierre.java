@@ -1,7 +1,6 @@
-import cards.Obstacles;
-
 package cards;
 
+import cards.Obstacles;
 import java.util.*;
 
 //chaque joueur doit avoir 3
@@ -11,18 +10,18 @@ public class Pierre extends Obstacles {
     public Pierre(){
         this.cardName ="Pierre Card";
         this.description="Permet de posser un obstacle";
-        int x;
-        int y;
+        this.destructible="indestructible !";
     }
 
 
-    public int[] playPierre() {
+    public int[] play() {
         System.out.println("Veuillez rentrer la coordonée X le d'obstacle");
-        Scanner sc = new Scanner;
+        Scanner sc = new Scanner(System.in);
         int X = sc.nextInt();
         System.out.println("Veuillez rentrer la coordonée Y le d'obstacle");
         int Y = sc.nextInt();
-        
-        return new int[x][y];
+        return new int[] {X, Y} ;
     }
+
+
 }

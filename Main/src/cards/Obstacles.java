@@ -7,11 +7,12 @@ package cards;
 public abstract class Obstacles {
     String description;
     String cardName;
+    String destructible;
 
     public String getCardName(){
         return this.cardName;
     }
 
-    public abstract int[] playCard(int X, int Y);
+    public abstract int[] play();
 
 }
