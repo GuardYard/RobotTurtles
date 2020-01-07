@@ -28,7 +28,7 @@ public class Player {
     public void Player1() {
         this.nb=1;
         this.name = "Player 1";
-        this.icontest = "  P1 ";
+        this.icontest = "  P1  ";
         this.color = "Red";
         this.direction = "South";
         this.deck.setDeck();

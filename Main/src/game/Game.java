@@ -215,6 +215,7 @@ public class Game {
 
 
     public void execute(Player P){
+
         for (Card card : P.getHandCards()){ //PF => getHandCards() : getProgram
             if (card.getCardName().equals("Blue Card")){
                 int x = P.getX();
@@ -234,9 +235,9 @@ public class Game {
                 int [] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
                 int x2 = posLaser[0];
                 int y2 = posLaser[1];
-                if (this.getCell(x2,y2).getClass().getName().equals("java.lang.String") /*cas Rien*/ || this.getCell(x2,y2).getClass().getName().equals("cards.Pierre") /*cas Pierre*/){
+                if (this.getCell(x2,y2).equals("     ") /*cas Rien*/ || this.getCell(x2,y2).equals("pierre") /*cas Pierre*/){
                     System.out.println("Sorry! Une de vos actions n'aboutie pas");
-                }else if(this.getCell(x2,y2).getClass().getName().equals("game.Player") || this.getCell(x2,y2).getClass().getName().equals("game.Jewel")){ //verifié si il y a une tortue et cas jewel
+                }else if(this.getCell(x2,y2).equals("  P1  ") || this.getCell(x2,y2).equals("  P2  ") || this.getCell(x2,y2).equals("  P3  ") || this.getCell(x2,y2).equals("  P4  ") || this.getCell(x2,y2).equals("  *  ")){ //verifié si il y a une tortue et cas jewel
                     if(this.getJoueur().size()==2){ //cas ou 2 players
                         P.setDirection(card.play(P.getDirection()));
 
