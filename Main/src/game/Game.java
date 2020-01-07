@@ -214,6 +214,18 @@ public class Game {
             else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){         //Change la direction du player
                 String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
+            }else if (card.getCardName().equals("Laser Card")){
+                int [] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
+                int x2 = posLaser[0];
+                int y2 = posLaser[1];
+                if (this.getCell(x2,y2).getClass().getName().equals("java.lang.String") /*cas Rien*/ || this.getCell(x2,y2).getClass().getName().equals("cards.Pierre") /*cas Pierre*/){
+                    System.out.println("Sorry! Une de vos actions n'aboutie pas");
+                }else if(this.getCell(x2,y2).getClass().getName().equals("game.Player")){ //verifié si il y a une tortue
+                    if(this.getJoueur().size()==2){ //cas ou 2 players
+                        P.setDirection(card.play(P.getDirection()));
+
+                    }else{}
+                }
             }
         }
 
@@ -252,5 +264,9 @@ public class Game {
     }
     public String getCell(int x, int y){
         return Cell[x][y];
+    }
+
+    public ArrayList<Player> getJoueur() {
+        return Joueur;
     }
 }
