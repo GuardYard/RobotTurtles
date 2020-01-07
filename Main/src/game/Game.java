@@ -9,6 +9,7 @@ public class Game {
     public Scanner sc = new Scanner(System.in);
 
     private ArrayList<Player> Joueur = new ArrayList<Player>();
+    private ArrayList<Jewel> Jewel = new ArrayList<Jewel>();
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
     private int victoryV;
     private int nbTurn;
@@ -113,9 +114,8 @@ public class Game {
             Player P1 = new Player();
             Player P2 = new Player();
             Jewel J1 = new Jewel();
-//            J1.setX(3);
-//            J1.setY(7);
-//            this.setCell(J1.getIcon(), J1.getX(),J1.getY());
+            J1.setPosition(3, 7);
+            //this.setCell(J1.getIcon(), J1.getX(),J1.getY()); REMOVE LATER
             P1.Player1();
             P2.Player2();
             P1.initObstacle();
@@ -127,6 +127,7 @@ public class Game {
             Collections.shuffle(NbO);
             P1.setPassageOrder(NbO.get(0));
             P2.setPassageOrder(NbO.get(1));
+            this.Jewel.add(J1);
             this.Joueur.add(P1);
             this.Joueur.add(P2);
         }
@@ -135,6 +136,12 @@ public class Game {
             Player P1 = new Player();
             Player P2 = new Player();
             Player P3 = new Player();
+            Jewel J1 = new Jewel();
+            J1.setPosition(0, 7);
+            Jewel J2 = new Jewel();
+            J2.setPosition(3, 7);
+            Jewel J3 = new Jewel();
+            J3.setPosition(6, 7);
             P1.Player1();
             P2.Player2();
             P3.Player3();
@@ -151,6 +158,9 @@ public class Game {
             P1.setPassageOrder(NbO.get(0));
             P2.setPassageOrder(NbO.get(1));
             P3.setPassageOrder(NbO.get(2));
+            this.Jewel.add(J1);
+            this.Jewel.add(J2);
+            this.Jewel.add(J3);
             this.Joueur.add(P1);
             this.Joueur.add(P2);
             this.Joueur.add(P3);
@@ -161,6 +171,10 @@ public class Game {
             Player P2 = new Player();
             Player P3 = new Player();
             Player P4 = new Player();
+            Jewel J1 = new Jewel();
+            J1.setPosition(1, 7);
+            Jewel J2 = new Jewel();
+            J2.setPosition(6, 7);
             P1.Player1();
             P2.Player2();
             P3.Player3();
@@ -182,6 +196,8 @@ public class Game {
             P2.setPassageOrder(NbO.get(1));
             P3.setPassageOrder(NbO.get(2));
             P4.setPassageOrder(NbO.get(3));
+            this.Jewel.add(J1);
+            this.Jewel.add(J2);
             this.Joueur.add(P1);
             this.Joueur.add(P2);
             this.Joueur.add(P3);
@@ -220,7 +236,7 @@ public class Game {
                 int y2 = posLaser[1];
                 if (this.getCell(x2,y2).getClass().getName().equals("java.lang.String") /*cas Rien*/ || this.getCell(x2,y2).getClass().getName().equals("cards.Pierre") /*cas Pierre*/){
                     System.out.println("Sorry! Une de vos actions n'aboutie pas");
-                }else if(this.getCell(x2,y2).getClass().getName().equals("game.Player")){ //verifié si il y a une tortue
+                }else if(this.getCell(x2,y2).getClass().getName().equals("game.Player") || this.getCell(x2,y2).getClass().getName().equals("game.Jewel")){ //verifié si il y a une tortue et cas jewel
                     if(this.getJoueur().size()==2){ //cas ou 2 players
                         P.setDirection(card.play(P.getDirection()));
 
@@ -247,8 +263,6 @@ public class Game {
                             P.setpositon(7, 0);
                         }
                     }
-                }else if(this.getCell(x2,y2).getClass().getName().equals("game.Jewel")){
-                  //Partie de Jewel
                 }
                 else{
                     removeCell(x2,y2);
