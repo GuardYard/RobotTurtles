@@ -224,7 +224,34 @@ public class Game {
                     if(this.getJoueur().size()==2){ //cas ou 2 players
                         P.setDirection(card.play(P.getDirection()));
 
-                    }else{}
+                    }
+                    else if(this.getJoueur().size()==3){
+                        if(P.getNb() == 1){
+                            P.setpositon(0,0);
+                        }
+                        else if(P.getNb() == 2){
+                            P.setpositon(3,0);
+                        }
+                        else if(P.getNb() == 3){
+                            P.setpositon(6,0);
+                        }
+                    }
+                    else if(this.getJoueur().size()==4) {
+                        if (P.getNb() == 1) {
+                            P.setpositon(0, 0);
+                        } else if (P.getNb() == 2) {
+                            P.setpositon(2, 0);
+                        } else if (P.getNb() == 3) {
+                            P.setpositon(5, 0);
+                        }else if (P.getNb() == 4) {
+                            P.setpositon(7, 0);
+                        }
+                    }
+                }else if(this.getCell(x2,y2).getClass().getName().equals("game.Jewel")){
+                  //Partie de Jewel
+                }
+                else{
+                    removeCell(x2,y2);
                 }
             }
         }

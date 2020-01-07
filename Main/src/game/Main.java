@@ -71,7 +71,7 @@ public class Main {
 // P1.getDeck().showDeck();
         Game Jeu = new Game();
         Jeu.init();
-        Jeu.turn();
+        Jeu.viewCell();
 
     }
 

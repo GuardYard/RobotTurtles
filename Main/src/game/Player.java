@@ -10,6 +10,7 @@ public class Player {
     private String icontest = "";
     private String color = "";
     private int passageOrder;//Random order
+    private int nb;
     private String name = "";
     private String direction = "";
     private ArrayList<Card> handCards = new ArrayList<Card>();
@@ -25,6 +26,7 @@ public class Player {
 
     //    block = {}
     public void Player1() {
+        this.nb=1;
         this.name = "Player 1";
         this.icontest = "  P1 ";
         this.color = "Red";
@@ -36,6 +38,7 @@ public class Player {
     }
 
     public void Player2() {
+        this.nb=2;
         this.name = "Player 2";
         this.icontest = "  P2  ";
         this.color = "Blue";
@@ -47,6 +50,7 @@ public class Player {
     }
 
     public void Player3() {
+        this.nb=3;
         this.name = "Player 3";
         this.icontest = "  P3  ";
         this.color = "Green";
@@ -58,6 +62,7 @@ public class Player {
     }
 
     public void Player4() {
+        this.nb=4;
         this.name = "Player 4";
         this.icontest = "  P4  ";
         this.color = "Pink";
@@ -111,6 +116,10 @@ public class Player {
     public void setpositon(int xtemp, int ytemp){       //F
         this.X = xtemp;
         this.Y = ytemp;
+    }
+
+    public int getNb() {
+        return nb;
     }
 
     public int getX() {
