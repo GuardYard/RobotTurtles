@@ -32,12 +32,7 @@ public class Game {
     public void turn(){
         do {
             for (Player player : this.Joueur) {
-
-
-                //faire ici une fonction qui verifie le nombre de cartes dans la main du joueur
-                //si la main n'a pas 5 cartes faire piocher
-
-
+                player.verifHand(player);
                 int commande = 0;
                 do {
                     System.out.println("C'est au tour de " + player.getName() + ". Veuillez choisir une action à effectuer.");
@@ -48,7 +43,7 @@ public class Game {
                 } while (commande != 1 && commande != 2 && commande != 3);
                 if(commande == 1){
                     prepare(player);
-                    //Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main et demande un
+                    //Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main
                 }
                 else if(commande == 2){
                     execute(player);
@@ -58,8 +53,6 @@ public class Game {
                 else if(commande == 3){
                     player.seeObstacleOnHand();
                     executeObstacles(player);
-                    //Fonction pour poser des obstacles
-                    //Montre le nouveau plateau :
                     viewCell();
                 }
             }
@@ -80,8 +73,11 @@ public class Game {
                 }while (chosenCard >= 0 && chosenCard <= player.getHandCards().size());
                 String choixContinue ="";
                 do {
-                    System.out.println("Voulez-vous continuer a mettre des cartes dans votre programme? (Oui : O; Non : N)");
+                    System.out.println("Voulez-vous continuer a mettre des cartes dans vot$w<666&²re programme? (Oui : O; Non : N)");
                     choixContinue = sc.nextLine();
+                    if(choixContinue.equals("N")){
+                        finishPrep = 1;
+                    }
                 }while (!choixContinue.equals("O") && !choixContinue.equals("N"));
             }while(finishPrep == 0);
     }
@@ -255,7 +251,6 @@ public class Game {
         Cell[x][y] = icon;
     }
     public String getCell(int x, int y){
-        String str = Cell[x][y];
-        return str;
+        return Cell[x][y];
     }
 }
