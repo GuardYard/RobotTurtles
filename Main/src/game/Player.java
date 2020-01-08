@@ -16,7 +16,7 @@ public class Player {
     private ArrayList<Card> handCards = new ArrayList<Card>();
     private ArrayList<Card> program = new ArrayList<Card>();
     private ArrayList<Card> cardPicked = new ArrayList<Card>();
-    private ArrayList<Card> blockCardNumber = new ArrayList<Card>();
+    //private ArrayList<Card> blockCardNumber = new ArrayList<Card>();
     private ArrayList<Obstacles> block = new ArrayList<Obstacles>();
     private int X;
     private int Y;
@@ -211,8 +211,21 @@ public class Player {
         }
     }
 
+    public ArrayList<Card> getCardPicked() {
+        return cardPicked;
+    }
 
-//end
+    public void addCardPicked (Card card){
+        this.cardPicked.add(card);
+
+    }
+
+
+
+
+
+
+    //end
 
 
     //    public int size() {
