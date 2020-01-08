@@ -70,7 +70,7 @@ public class Game {
                     player.seeCardOnProgram();
                     System.out.println("Choisissez l'ordre dans lequel vous voulez executer votre programme (1 : Premier carte de votre main, 2 : Deuxieme carte, etc...)");
                     chosenCard = sc.nextInt();
-                }while (chosenCard <0 && chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
+                }while (chosenCard <0 || chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
                 player.addToProgram(player,player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
 
                 String choixContinue ="";
@@ -242,9 +242,8 @@ public class Game {
                 verif(P,card,x2,y2);
             }
             P.addCardPicked(card);
-            P.removeProgram(card);
         }
-
+        P.getProgram().clear();
     }
 
     public void executeObstacles(Player P){
