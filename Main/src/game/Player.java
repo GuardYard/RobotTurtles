@@ -33,7 +33,7 @@ public class Player {
         this.direction = "South";
         this.deck.setDeck();
         for(int i=0; i<5; i++){
-        this.deck.draw();
+            this.deck.draw();
         }
     }
 

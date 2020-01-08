@@ -69,9 +69,14 @@ public class Main {
 // Player P1 = new Player();
 // P1.Player1();
 // P1.getDeck().showDeck();
-        Game Jeu = new Game();
-        Jeu.init();
-        Jeu.viewCell();
+
+        //Test Obstacle
+//        Game Jeu = new Game();
+//        Jeu.init();
+//        Jeu.setCell("  P2  ",1,2);
+//        Jeu.viewCell();
+//        Jeu.turn();
+
 
     }
 
