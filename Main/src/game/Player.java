@@ -160,7 +160,8 @@ public class Player {
 
     public void addToProgram(Player P, Card action) {  //PF- what order does the player want
         program.add(action);
-        P.getHandCards().remove(action);
+        //P.getHandCards().remove(action); Code se secours, uptade
+        P.removeCFH(action);
     }
 
     public void setBlock() {
@@ -218,6 +219,14 @@ public class Player {
     public void addCardPicked (Card card){
         this.cardPicked.add(card);
 
+    }
+
+    public void removeCFH (Card card){
+        this.handCards.remove(card);
+    }
+
+    public void removeProgram (Card card){
+        this.program.remove(card);
     }
 
 

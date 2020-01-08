@@ -43,8 +43,7 @@ public class Game {
                     commande = sc.nextInt();
                 } while (commande != 1 && commande != 2 && commande != 3);
                 if(commande == 1){
-                    prepare(player);
-                    //Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main
+                    prepare(player);//Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main F
                 }
                 else if(commande == 2){
                     execute(player);
@@ -70,16 +69,18 @@ public class Game {
                     player.seeCardOnHand();
                     System.out.println("Choisissez l'ordre dans lequel vous voulez executer votre programme (1 : Premier carte de votre main, 2 : Deuxieme carte, etc...)");
                     chosenCard = sc.nextInt();
-                    //fonction d'ajout de la carte au programme.
-                }while (chosenCard >= 0 && chosenCard <= player.getHandCards().size());
+                }while (chosenCard <0 && chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
+                player.addToProgram(player,player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
+
                 String choixContinue ="";
                 do {
-                    System.out.println("Voulez-vous continuer a mettre des cartes dans vot$w<666&²re programme? (Oui : O; Non : N)");
+                    System.out.println("Voulez-vous continuer a mettre des cartes dans votre programme? (Oui : O; Non : N)");
                     choixContinue = sc.nextLine();
-                    if(choixContinue.equals("N")){
-                        finishPrep = 1;
-                    }
+                    choixContinue = choixContinue.toUpperCase(); //securité
                 }while (!choixContinue.equals("O") && !choixContinue.equals("N"));
+                if(choixContinue.equals("N")){
+                    finishPrep = 1;
+                }
             }while(finishPrep == 0);
     }
 
@@ -216,7 +217,7 @@ public class Game {
 
     public void execute(Player P){
 
-        for (Card card : P.getHandCards()){ //PF => getHandCards() : getProgram
+        for (Card card : P.getProgram()){ //F => getHandCards() : getProgram YES
             if (card.getCardName().equals("Blue Card")){
                 int x = P.getX();
                 int y = P.getY();
@@ -238,7 +239,8 @@ public class Game {
                 int y2 = posLaser[1];
                 verif(P,card,x2,y2);
             }
-
+            P.addCardPicked(card);
+            P.removeProgram(card);
         }
 
     }
