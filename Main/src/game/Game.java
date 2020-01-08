@@ -231,44 +231,14 @@ public class Game {
             else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){         //Change la direction du player
                 String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
-            }else if (card.getCardName().equals("Laser Card")){
+            }
+            else if (card.getCardName().equals("Laser Card")){
                 int [] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
                 int x2 = posLaser[0];
                 int y2 = posLaser[1];
-                if (this.getCell(x2,y2).equals("     ") /*cas Rien*/ || this.getCell(x2,y2).equals("pierre") /*cas Pierre*/){
-                    System.out.println("Sorry! Une de vos actions n'aboutie pas");
-                }else if(this.getCell(x2,y2).equals("  P1  ") || this.getCell(x2,y2).equals("  P2  ") || this.getCell(x2,y2).equals("  P3  ") || this.getCell(x2,y2).equals("  P4  ") || this.getCell(x2,y2).equals("  *  ")){ //verifié si il y a une tortue et cas jewel
-                    if(this.getJoueur().size()==2){ //cas ou 2 players
-                        P.setDirection(card.play(P.getDirection()));
-
-                    }
-                    else if(this.getJoueur().size()==3){
-                        if(P.getNb() == 1){
-                            P.setpositon(0,0);
-                        }
-                        else if(P.getNb() == 2){
-                            P.setpositon(3,0);
-                        }
-                        else if(P.getNb() == 3){
-                            P.setpositon(6,0);
-                        }
-                    }
-                    else if(this.getJoueur().size()==4) {
-                        if (P.getNb() == 1) {
-                            P.setpositon(0, 0);
-                        } else if (P.getNb() == 2) {
-                            P.setpositon(2, 0);
-                        } else if (P.getNb() == 3) {
-                            P.setpositon(5, 0);
-                        }else if (P.getNb() == 4) {
-                            P.setpositon(7, 0);
-                        }
-                    }
-                }
-                else{
-                    removeCell(x2,y2);
-                }
+                verif(P,card,x2,y2);
             }
+
         }
 
     }
@@ -310,5 +280,41 @@ public class Game {
 
     public ArrayList<Player> getJoueur() {
         return Joueur;
+    }
+
+    private void verif(Player P, Card card, int x2, int y2){
+        if (this.getCell(x2,y2).equals("     ") /*cas Rien*/ || this.getCell(x2,y2).equals("pierre") /*cas Pierre*/){
+            System.out.println("Sorry! Une de vos actions n'aboutie pas");
+        }else if(this.getCell(x2,y2).equals("  P1  ") || this.getCell(x2,y2).equals("  P2  ") || this.getCell(x2,y2).equals("  P3  ") || this.getCell(x2,y2).equals("  P4  ") || this.getCell(x2,y2).equals("  *  ")){ //verifié si il y a une tortue et cas jewel
+            if(this.getJoueur().size()==2){ //cas ou 2 players
+                P.setDirection(card.play(P.getDirection()));
+
+            }
+            else if(this.getJoueur().size()==3){
+                if(P.getNb() == 1){
+                    P.setpositon(0,0);
+                }
+                else if(P.getNb() == 2){
+                    P.setpositon(3,0);
+                }
+                else if(P.getNb() == 3){
+                    P.setpositon(6,0);
+                }
+            }
+            else if(this.getJoueur().size()==4) {
+                if (P.getNb() == 1) {
+                    P.setpositon(0, 0);
+                } else if (P.getNb() == 2) {
+                    P.setpositon(2, 0);
+                } else if (P.getNb() == 3) {
+                    P.setpositon(5, 0);
+                }else if (P.getNb() == 4) {
+                    P.setpositon(7, 0);
+                }
+            }
+        }
+        else{
+            removeCell(x2,y2);
+        }
     }
 }

@@ -71,12 +71,17 @@ public class Main {
 // P1.getDeck().showDeck();
 
         //Test Obstacle
-        Game Jeu = new Game();
-        Jeu.init();
-        Jeu.setCell("  P2  ",1,2);
-        Jeu.viewCell();
-        Jeu.turn();
+//        Game Jeu = new Game();
+//        Jeu.init();
+//        Jeu.setCell("  P2  ",1,2);
+//        Jeu.viewCell();
+//        Jeu.turn();
+        String name=sc.nextLine();
 
+        if(name.equals("uno")){
+            System.out.println(1);
+        }
+        System.out.println(2);
 
     }
 
