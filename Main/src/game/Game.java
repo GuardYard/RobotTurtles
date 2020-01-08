@@ -13,6 +13,7 @@ public class Game {
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
     private int victoryV;
     private int nbTurn;
+    private int cashPrize;
 
     public String[][] getCell() {
         return Cell;
@@ -204,6 +205,7 @@ public class Game {
             this.Joueur.add(P3);
             this.Joueur.add(P4);
         }
+        this.cashPrize=P;
         sc.nextLine();
         for(Player elem : this.Joueur){
             System.out.println("Quel est le nom du joueur " + elem.getName() + " ?");
@@ -318,5 +320,17 @@ public class Game {
         else{
             removeCell(x2,y2);
         }
+    }
+
+    private void verifBlue(Player P, Card card, int x2, int y2){
+        if(this.getCell(x2,y2).equals("  *  ")){//we know that there will be a jewel in front
+            P.setScore(this.cashPrize);
+            decreaseCashPrize();
+        }
+    }
+
+
+    public void decreaseCashPrize(){
+        this.cashPrize--;
     }
 }

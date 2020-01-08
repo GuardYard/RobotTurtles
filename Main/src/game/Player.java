@@ -13,6 +13,8 @@ public class Player {
     private int nb;
     private String name = "";
     private String direction = "";
+    private int ultimatum;
+    private int score;
     private ArrayList<Card> handCards = new ArrayList<Card>();
     private ArrayList<Card> program = new ArrayList<Card>();
     private ArrayList<Card> cardPicked = new ArrayList<Card>();
@@ -198,6 +200,22 @@ public class Player {
 
     public int getPassageOrder() {
         return this.passageOrder;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getUltimatum() {
+        return ultimatum;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setUltimatum(int ultimatum) {
+        this.ultimatum = ultimatum;
     }
 
     public void initObstacle(){

@@ -76,13 +76,10 @@ public class Main {
 //        Jeu.setCell("  P2  ",1,2);
 //        Jeu.viewCell();
 //        Jeu.turn();
-        String name=sc.nextLine();
-
-        if(name.equals("uno")){
-            System.out.println(1);
-        }
-        System.out.println(2);
-
+        int s=4;
+        System.out.println(s);
+        s--;
+        System.out.println(s);
     }
 
 }
