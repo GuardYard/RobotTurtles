@@ -62,12 +62,12 @@ public class Game {
 
     private void prepare(Player player) {
         System.out.println("Voici votre jeu !");
-        player.seeCardOnHand();
         int finishPrep = 0;
             do{
                 int chosenCard;
                 do {
                     player.seeCardOnHand();
+                    player.seeCardOnProgram();
                     System.out.println("Choisissez l'ordre dans lequel vous voulez executer votre programme (1 : Premier carte de votre main, 2 : Deuxieme carte, etc...)");
                     chosenCard = sc.nextInt();
                 }while (chosenCard <0 && chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
