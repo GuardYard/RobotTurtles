@@ -99,6 +99,7 @@ public class Game {
     }
 
     public void viewCell() { //F
+        update();
         for (int i = 0; i < Cell.length; i++) {
             System.out.print("[");
             for (String[] strings : Cell) {
@@ -228,8 +229,7 @@ public class Game {
                 int x2 = newpos[0];
                 int y2 = newpos[1];
                 P.setpositon(x2,y2);
-                setCell(P.getIcontest(), x2, y2);
-
+                verifBlue(P, card, x2, y2);
             }
             else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")){         //Change la direction du player
                 String newdir = card.play(P.getDirection());
@@ -329,8 +329,16 @@ public class Game {
         }
     }
 
-
     public void decreaseCashPrize(){
         this.cashPrize--;
+    }
+
+    public void update(){ //F
+        for(Player P : Joueur){
+            setCell(P.getIcontest(), P.getX(), P.getY());
+        }
+        for(Jewel jewel : Jewel){
+            setCell(jewel.getIcon(), jewel.getX(), jewel.getY());
+        }
     }
 }

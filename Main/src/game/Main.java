@@ -71,15 +71,10 @@ public class Main {
 // P1.getDeck().showDeck();
 
         //Test Obstacle
-//        Game Jeu = new Game();
-//        Jeu.init();
-//        Jeu.setCell("  P2  ",1,2);
-//        Jeu.viewCell();
-//        Jeu.turn();
-        int s=4;
-        System.out.println(s);
-        s--;
-        System.out.println(s);
+        Game Jeu = new Game();
+        Jeu.init();
+        Jeu.turn();
+
     }
 
 }
