@@ -32,8 +32,15 @@ public class Player {
         this.color = "Red";
         this.direction = "South";
         this.deck.setDeck();
-        for(int i=0; i<5; i++){
-            this.deck.draw();
+        Card L = new LaserCard();
+        Card B = new BlueCard();
+        this.handCards.add(B);
+        for(int i=0; i<4; i++){
+
+            this.handCards.add(L);
+
+            //this.deck.draw();
+
         }
     }
 
