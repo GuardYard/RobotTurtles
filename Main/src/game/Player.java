@@ -34,9 +34,9 @@ public class Player {
         this.color = "Red";
         this.direction = "South";
         this.deck.setDeck();
-        for(int i=0; i<4; i++){
-            this.deck.draw();
-        }
+//        for(int i=0; i<4; i++){
+//            this.deck.draw();
+//        }
     }
 
     public void Player2() {
@@ -46,9 +46,9 @@ public class Player {
         this.color = "Blue";
         this.direction = "South";
         this.deck.setDeck();
-        for(int i=0; i<5; i++){
-            this.deck.draw();
-        }
+//        for(int i=0; i<5; i++){
+//            this.deck.draw();
+//        }
     }
 
     public void Player3() {
@@ -143,7 +143,7 @@ public class Player {
 
     public void verifHand(Player P){            //A vérifier- dp we need an else
         int f  = P.getHandCards().size();
-        if (f<5){
+        if (f<5){ // if the players hand is less than 5 cards we draw
             int nbPioche = 5-f;
             for(int i = 0; i<nbPioche; i++){
                 P.pickCardOnDeck();

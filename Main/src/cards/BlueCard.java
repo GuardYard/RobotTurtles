@@ -22,6 +22,21 @@ public class BlueCard extends Card {
     }
 
     public String play(String dir) {
-        return null;
+        String direction = "";
+        if(dir.equals("North")){
+            direction = "South";
+        }
+        else if(dir.equals("West")){
+            direction = "East";
+        }
+        else if(dir.equals("South")){
+            direction = "North";
+        }
+        else if(dir.equals("East")){
+            direction = "West";
+        }
+        return direction;
     }
+
+
 }
