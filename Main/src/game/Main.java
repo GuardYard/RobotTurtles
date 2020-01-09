@@ -73,8 +73,6 @@ public class Main {
         //Test Obstacle
         Game Jeu = new Game();
         Jeu.init();
-        int i = Jeu.getPlayer("  P1  ");
-        System.out.println(i);
         Jeu.turn();
 
     }

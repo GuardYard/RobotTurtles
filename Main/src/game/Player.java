@@ -28,28 +28,38 @@ public class Player {
 
     //    block = {}
     public void Player1() {
-        this.nb=1;
+        this.nb = 1;
         this.name = "Player 1";
         this.icontest = "  P1  ";
         this.color = "Red";
         this.direction = "South";
         this.deck.setDeck();
+        Card B = new BlueCard(); // pour test
+        Card L = new LaserCard();
+        this.program.add(B);// pour test
+        for (int i = 0; i < 5; i++) {
+
+            this.program.add(L);
+            //this.deck.draw();
+        }
 //        for(int i=0; i<4; i++){
 //            this.deck.draw();
 //        }
     }
 
     public void Player2() {
-        this.nb=2;
+        this.nb = 2;
         this.name = "Player 2";
         this.icontest = "  P2  ";
         this.color = "Blue";
         this.direction = "South";
         this.deck.setDeck();
-//        for(int i=0; i<5; i++){
-//            this.deck.draw();
-//        }
+        //for (int i = 0; i < 4; i++) {
+            //this.deck.draw();
+
+        //}
     }
+
 
     public void Player3() {
         this.nb=3;

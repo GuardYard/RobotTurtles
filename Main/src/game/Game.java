@@ -100,6 +100,7 @@ public class Game {
 
     public void viewCell() { //F
         update();
+        setCell("  P2  ", 0, 2);
         for (int i = 0; i < Cell.length; i++) {
             System.out.print("[");
             for (String[] strings : Cell) {
@@ -314,6 +315,11 @@ public class Game {
 
             } else if (this.getJoueur().size() == 3){
 
+                //this.getJoueur().get(getPlayer(getCell(x2,y2))) = on get un joeur selon ça position dans la iste
+                int x3 = this.getJoueur().get(getPlayer(getCell(x2,y2))).getX();
+                int y3 = this.getJoueur().get(getPlayer(getCell(x2,y2))).getY();
+                removeCell(x3, y3);
+
                 if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
 
                     this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
@@ -327,7 +333,12 @@ public class Game {
                     this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(6, 0);
 
                 }
+
+
             } else if (this.getJoueur().size() == 4){
+                int x3 = this.getJoueur().get(getPlayer(getCell(x2,y2))).getX();
+                int y3 = this.getJoueur().get(getPlayer(getCell(x2,y2))).getY();
+                removeCell(x3, y3);
 
                 if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
 
