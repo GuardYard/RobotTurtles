@@ -115,8 +115,15 @@ public class Game {
 
     public void viewCell() { //F
         update();
+        //axe sur X
+        System.out.print("    ");
+        for (int i = 0; i < Cell.length; i++){
+            System.out.print("[ "+ i+ " ] ");
+        }
+        System.out.print('\n');
+
         for (int i = 0; i < Cell.length; i++) {
-            System.out.print("[");
+            System.out.print("["+i+"]["); // on met l'echelle en Y
             for (String[] strings : Cell) {
                 System.out.print(strings[i]);
                 System.out.print(",");
