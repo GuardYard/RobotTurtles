@@ -1,8 +1,10 @@
 package cards;
 
+import game.ConsoleColors;
+
 public class LaserCard extends Card {           //F
     public LaserCard(){
-        this.cardName ="Laser Card";
+        this.cardName =(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET);
         this.description="Détruit l'obstacle devant le joueur";
     }
 

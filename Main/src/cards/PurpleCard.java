@@ -1,8 +1,10 @@
 package cards;
 
+import game.ConsoleColors;
+
 public class PurpleCard extends Card {
     public PurpleCard(){
-        this.cardName ="Purple Card";
+        this.cardName =(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET);
         this.description="Permet de tourner à droite (l'action d'avancer n'est pas comprise avec cette carte)";
     }
 

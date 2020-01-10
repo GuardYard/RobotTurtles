@@ -1,10 +1,12 @@
 package cards;
 
+import game.ConsoleColors;
+
 public class YellowCard extends Card {
 
     //test
     public YellowCard() {
-        this.cardName = "Yellow Card";
+        this.cardName = (ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET);
         this.description = "Permet de tourner à gauche (l'action d'avancer n'est pas comprise avec cette carte)";
     }
 

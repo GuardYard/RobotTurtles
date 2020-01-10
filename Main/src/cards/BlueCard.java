@@ -1,9 +1,11 @@
 package cards;
 
+import game.ConsoleColors;
+
 public class BlueCard extends Card {
     public BlueCard() {
-        this.cardName = "Blue Card";
-        this.description = "Permet d'avancer en avant d'une case !"; //anlagis?
+        this.cardName = (ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET);
+        this.description = "Permet d'avancer en avant d'une case !";
     }
 
     public int[] playBlue(String direction, int X, int Y) {
