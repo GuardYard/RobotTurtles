@@ -35,9 +35,6 @@ public class Player {
         this.direction = "South";
         this.deck.setDeck();
         }
-//        for(int i=0; i<4; i++){
-//            this.deck.draw();
-//        }
 
     public void Player2() {
         this.nb = 2;
@@ -46,10 +43,7 @@ public class Player {
         this.color = "Blue";
         this.direction = "South";
         this.deck.setDeck();
-        //for (int i = 0; i < 4; i++) {
-            //this.deck.draw();
 
-        //}
     }
 
 
@@ -60,9 +54,7 @@ public class Player {
         this.color = "Green";
         this.direction = "South";
         this.deck.setDeck();
-        for(int i=0; i<5; i++){
-            this.deck.draw();
-        }
+
     }
 
     public void Player4() {
@@ -72,9 +64,7 @@ public class Player {
         this.color = "Pink";
         this.direction = "South";
         this.deck.setDeck();
-        for(int i=0; i<5; i++){
-            this.deck.draw();
-        }
+
     }
 
     public Deck getDeck() {
