@@ -34,10 +34,11 @@ public class Game {
     }
 
     public void turn() {
-        do {
+        while (Winners.size() < Joueur.size() - 1){
             for (Player player : this.Joueur) {
                 if (player.getUltimatum() == 0) {
                     player.verifHand(player);
+                    //player.verifDeck(player);
                     int commande = 0;
                     do {
                         System.out.println("Votre tortue regarde vers " + player.getDirection());
@@ -59,8 +60,11 @@ public class Game {
                         viewCell();
                     }
                 }
+                if(Winners.size() == Joueur.size() - 1){
+                    break;
+                }
             }
-        } while (Winners.size() != Joueur.size() - 1);
+        }
          endTurn();
     }
 
@@ -253,7 +257,6 @@ public class Game {
                 int[] newpos = card.playBlue(P.getDirection(), x, y);
                 int x2 = newpos[0];
                 int y2 = newpos[1];
-                P.setpositon(x2, y2);
                 verifBlue(P, card, x2, y2);
             } else if (card.getCardName().equals(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET) || card.getCardName().equals(ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET)) {         //Change la direction du player
                 String newdir = card.play(P.getDirection());
@@ -460,8 +463,11 @@ public class Game {
 
             }
 
-        } else if (this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET)) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+"glace"+ ConsoleColors.RESET)) {// rule in front of a wall
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+"glace"+ ConsoleColors.RESET)) {// rule in front of a wall
             P.setDirection(card.play(P.getDirection()));
+        }
+        else if(this.getCell(x2,y2).equals("     ")){
+            P.setpositon(x2, y2);
         }
     }
 

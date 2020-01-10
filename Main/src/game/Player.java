@@ -145,6 +145,12 @@ public class Player {
         }
     }
 
+    public void verifDeck(Player P){
+//        if(P.getDeck().ge == 0){
+//
+//        }
+    }
+
 
 
     public void addToProgram(Player P, Card action) {  //PF- what order does the player want
