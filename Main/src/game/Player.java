@@ -146,9 +146,9 @@ public class Player {
     }
 
     public void verifDeck(Player P){
-//        if(P.getDeck().ge == 0){
-//
-//        }
+        if(P.getDeck().getDeck().size() == 0){
+            P.deck.setDeck(P.cardPicked); // if the deck is emty, we put all card picked in it to fill
+        }
     }
 
 

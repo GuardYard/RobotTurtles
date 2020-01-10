@@ -38,7 +38,7 @@ public class Game {
             for (Player player : this.Joueur) {
                 if (player.getUltimatum() == 0) {
                     player.verifHand(player);
-                    //player.verifDeck(player);
+                    player.verifDeck(player);
                     int commande = 0;
                     do {
                         System.out.println("Votre tortue regarde vers " + player.getDirection());
