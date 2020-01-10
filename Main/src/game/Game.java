@@ -60,7 +60,7 @@ public class Game {
                     }
                 }
             }
-        } while (Winners.size() == Joueur.size()-1);
+        } while (Winners.size() < Joueur.size()-1);
          endTurn();
     }
 
