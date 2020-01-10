@@ -303,9 +303,9 @@ public class Game {
     }
 
     private void verif(Player P, Card card, int x2, int y2) {
-        if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals("pierre") /*cas Pierre*/) {
+        if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "pierre"+ ConsoleColors.RESET)) /*cas Pierre*/) {
             System.out.println("Sorry! Une de vos actions n'aboutie pas");
-        } else if (this.getCell(x2, y2).equals("  *  ")) { //verifié si il y a une tortue et cas jewel
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) { //verifié si il y a une tortue et cas jewel
             if (this.getJoueur().size() == 2) { //cas ou 2 players
                 P.setDirection(card.play(P.getDirection()));
 
@@ -379,7 +379,7 @@ public class Game {
     }
 
     private void verifBlue(Player P, Card card, int x2, int y2) {
-        if (this.getCell(x2, y2).equals("  *  ")) {//we know that there will be a jewel in front
+        if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) {//we know that there will be a jewel in front
             P.setScore(this.cashPrize);
             winners(P);     //Fonction ajout dans Winners & suppression de la liste normal
             decreaseCashPrize();
@@ -453,7 +453,7 @@ public class Game {
 
             }
 
-        } else if (this.getCell(x2, y2).equals("pierre") || this.getCell(x2, y2).equals("glace ")) {// rule in front of a wall
+        } else if (this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "pierre"+ ConsoleColors.RESET)) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+"glace "+ ConsoleColors.RESET)) {// rule in front of a wall
             P.setDirection(card.play(P.getDirection()));
         }
     }

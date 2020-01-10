@@ -1,6 +1,8 @@
 package cards;
 
 import cards.Obstacles;
+import game.ConsoleColors;
+
 import java.util.*;
 
 //chaque joueur doit avoir 3
@@ -8,10 +10,10 @@ import java.util.*;
 
 public class Pierre extends Obstacles {
     public Pierre(){
-        this.cardName ="Pierre Card";
+        this.cardName =(ConsoleColors.BLACK_UNDERLINED+"Pierre Card"+ ConsoleColors.RESET);
         this.description="Permet de posser un obstacle";
         this.destructible="indestructible !";
-        this.icon="pierre";
+        this.icon=(ConsoleColors.BLACK_UNDERLINED+ "pierre"+ ConsoleColors.RESET);
     }
 
 

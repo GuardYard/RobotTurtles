@@ -3,7 +3,7 @@ package game;
 public class Jewel {
 
     String name = "J";
-    String icon = "  *  ";
+    String icon = (ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET);
     int X;
     int Y;
 
