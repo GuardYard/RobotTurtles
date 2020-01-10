@@ -14,7 +14,7 @@ public class Game {
     private ArrayList<Player> Winners = new ArrayList<Player>();
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
 //    private int victoryV;
-    private int nbTurn;
+    private int nbTurn;  //Nombre de tour optionel
     private int cashPrize;
 
     public String[][] getCell() {
