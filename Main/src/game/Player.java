@@ -91,8 +91,10 @@ public class Player {
 
     public void seeCardOnHand(){            //F
         System.out.print("[   ");
+        int i = 1;
         for(Card card : handCards){
-            System.out.print(card.getCardName());
+            System.out.println(i +" : " + card.getCardName());
+            i++;
         }
         System.out.println("   ]");
     }
@@ -101,7 +103,7 @@ public class Player {
         System.out.print("[   ");
         int i = 0;
         for(Obstacles card : block){
-            System.out.println(i +" : "+ card.getCardName()+" ,");
+            System.out.println(i + " : " + card.getCardName()+" ,");
             i++;
             }
 
@@ -112,7 +114,7 @@ public class Player {
     public void seeCardOnProgram(){            //F
         System.out.print("[   ");
         for(Card card : program){
-            System.out.print(card.getCardName() + " ;");
+            System.out.print(card.getCardName() + "  ;");
         }
         System.out.println("   ]");
     }

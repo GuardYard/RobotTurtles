@@ -2,6 +2,7 @@ package game;
 
 import cards.Card;
 import cards.Obstacles;
+import cards.Pierre;
 
 import java.util.*;
 
@@ -10,8 +11,9 @@ public class Game {
 
     private ArrayList<Player> Joueur = new ArrayList<Player>();
     private ArrayList<Jewel> Jewel = new ArrayList<Jewel>();
+    private ArrayList<Player> Winners = new ArrayList<Player>();
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
-    private int victoryV;
+//    private int victoryV;
     private int nbTurn;
     private int cashPrize;
 
@@ -56,7 +58,17 @@ public class Game {
                     viewCell();
                 }
             }
-        } while (victoryV == 0);
+        } while (Joueur.size() > 1);
+         endTurn();
+    }
+
+    public void endTurn(){
+        System.out.println("Parmi les joueurs, celui qui a fini premier est : " + Winners.get(0));
+        System.out.print("Nos vainqueurs sont : ");
+        for(Player win : Winners){
+            System.out.print(win.getName() + ", ");
+        }
+
     }
 
     private void prepare(Player player) {
@@ -69,7 +81,7 @@ public class Game {
                 player.seeCardOnProgram();
                 System.out.println("Votre tortue regarde vers " + player.getDirection());
                 System.out.println("Choisissez l'ordre dans lequel vous voulez executer votre programme (1 : Premier carte de votre main, 2 : Deuxieme carte, etc...)");
-                chosenCard = sc.nextInt();
+                chosenCard = sc.nextInt()-1;
             } while (chosenCard < 0 || chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
             player.addToProgram(player, player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
 
@@ -133,6 +145,10 @@ public class Game {
             this.Jewel.add(J1);
             this.Joueur.add(P1);
             this.Joueur.add(P2);
+            Obstacles stoneWall = new Pierre();
+            for(int i = 0; i<8; i++){
+                setCell(stoneWall.getIcon(), 7, i);
+            }
         } else if (P == 3) {
             Player P1 = new Player();
             Player P2 = new Player();
@@ -165,6 +181,10 @@ public class Game {
             this.Joueur.add(P1);
             this.Joueur.add(P2);
             this.Joueur.add(P3);
+            Obstacles stoneWall = new Pierre();
+            for(int i = 0; i<8; i++){
+                setCell(stoneWall.getIcon(), 7, i);
+            }
         } else if (P == 4) {
             Player P1 = new Player();
             Player P2 = new Player();
@@ -255,9 +275,9 @@ public class Game {
         }
     }
 
-    private void setVictoryV(int victoryV) {
-        this.victoryV = victoryV;
-    }
+//    private void setVictoryV(int victoryV) {
+//        this.victoryV = victoryV;
+//    }
 
     private void setJoueur(ArrayList<Player> joueur) {
         Joueur = joueur;
@@ -358,8 +378,77 @@ public class Game {
     private void verifBlue(Player P, Card card, int x2, int y2) {
         if (this.getCell(x2, y2).equals("  *  ")) {//we know that there will be a jewel in front
             P.setScore(this.cashPrize);
+            winners(P);     //Fonction ajout dans Winners & suppression de la liste normal
             decreaseCashPrize();
+
+
         } else if (this.getCell(x2, y2).equals("  P1  ") || this.getCell(x2, y2).equals("  P2  ") || this.getCell(x2, y2).equals("  P3  ") || this.getCell(x2, y2).equals("  P4  ")) {
+            if (this.getJoueur().size() == 2) { //cas ou 2 players
+                if (P.getNb() == 1) {
+                    P.setpositon(1, 0);
+                } else if (P.getNb() == 2) {
+                    P.setpositon(5, 0);
+                }
+                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(1, 0);
+
+                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
+                }
+
+            } else if (this.getJoueur().size() == 3) {
+                if (P.getNb() == 1) {
+                    P.setpositon(0, 0);
+                } else if (P.getNb() == 2) {
+                    P.setpositon(3, 0);
+                } else if (P.getNb() == 3) {
+                    P.setpositon(6, 0);
+                }
+                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
+
+                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(3, 0);
+
+                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 3) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(6, 0);
+
+                }
+
+            } else if (this.getJoueur().size() == 4) {
+                if (P.getNb() == 1) {
+                    P.setpositon(0, 0);
+                } else if (P.getNb() == 2) {
+                    P.setpositon(2, 0);
+                } else if (P.getNb() == 3) {
+                    P.setpositon(5, 0);
+                } else if (P.getNb() == 4) {
+                    P.setpositon(7, 0);
+                }
+                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
+
+                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(2, 0);
+
+                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 3) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(5, 0);
+
+                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 4) {
+
+                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(7, 0);
+
+                }
+
+            }
 
         } else if (this.getCell(x2, y2).equals("pierre") || this.getCell(x2, y2).equals("glace ")) {// rule in front of a wall
             P.setDirection(card.play(P.getDirection()));
@@ -387,5 +476,10 @@ public class Game {
             }
         }
         return i;
+    }
+
+    public void winners(Player p){
+        this.Winners.add(p);
+        this.Joueur.remove(p);
     }
 }
