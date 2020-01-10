@@ -13,7 +13,7 @@ public class Player {
     private int nb;
     private String name = "";
     private String direction = "";
-    private int ultimatum;
+    private int ultimatum = 0;
     private int score;
     private ArrayList<Card> handCards = new ArrayList<Card>();
     private ArrayList<Card> program = new ArrayList<Card>();

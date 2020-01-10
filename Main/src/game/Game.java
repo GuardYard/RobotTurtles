@@ -65,7 +65,7 @@ public class Game {
     }
 
     public void endTurn(){
-        System.out.println("Parmi les joueurs, celui qui a fini premier est : " + Winners.get(0));
+        System.out.println("Parmi les joueurs, celui qui a fini premier est : " + Winners.get(0).getName() + ":" + Winners.get(0).getScore());
         System.out.print("Nos vainqueurs sont : ");
         for(Player win : Winners){
             System.out.print(win.getName() + ", ");
