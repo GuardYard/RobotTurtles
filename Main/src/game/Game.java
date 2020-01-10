@@ -13,7 +13,7 @@ public class Game {
     private ArrayList<Jewel> Jewel = new ArrayList<Jewel>();
     private ArrayList<Player> Winners = new ArrayList<Player>();
     private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
-//    private int victoryV;
+    private int victoryV = 1;
     private int nbTurn;  //Nombre de tour optionel
     private int cashPrize;
 
@@ -36,29 +36,31 @@ public class Game {
     public void turn() {
         do {
             for (Player player : this.Joueur) {
-                player.verifHand(player);
-                int commande = 0;
-                do {
-                    System.out.println("Votre tortue regarde vers " + player.getDirection());
-                    System.out.println("C'est au tour de " + player.getName() + ". Veuillez choisir une action à effectuer.");
-                    System.out.println("Préparer vos déplacements   :   1");
-                    System.out.println("Executer                    :   2");
-                    System.out.println("Poser des obstacles         :   3");
-                    commande = sc.nextInt();
-                } while (commande != 1 && commande != 2 && commande != 3);
-                if (commande == 1) {
-                    prepare(player);//Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main F
-                } else if (commande == 2) {
-                    execute(player);
-                    viewCell();
-                    //Fonction qui vérifie la victoire et change la valeur de victoryV (victoryV = 1 ===> Victoire)
-                } else if (commande == 3) {
-                    player.seeObstacleOnHand();
-                    executeObstacles(player);
-                    viewCell();
+                if (player.getUltimatum() == 0) {
+                    player.verifHand(player);
+                    int commande = 0;
+                    do {
+                        System.out.println("Votre tortue regarde vers " + player.getDirection());
+                        System.out.println("C'est au tour de " + player.getName() + ". Veuillez choisir une action à effectuer.");
+                        System.out.println("Préparer vos déplacements   :   1");
+                        System.out.println("Executer                    :   2");
+                        System.out.println("Poser des obstacles         :   3");
+                        commande = sc.nextInt();
+                    } while (commande != 1 && commande != 2 && commande != 3);
+                    if (commande == 1) {
+                        prepare(player);//Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main F
+                    } else if (commande == 2) {
+                        execute(player);
+                        viewCell();
+                        //Fonction qui vérifie la victoire et change la valeur de victoryV (victoryV = 1 ===> Victoire)
+                    } else if (commande == 3) {
+                        player.seeObstacleOnHand();
+                        executeObstacles(player);
+                        viewCell();
+                    }
                 }
             }
-        } while (Joueur.size() > 1);
+        } while (Winners.size() == Joueur.size()-1);
          endTurn();
     }
 
@@ -275,9 +277,9 @@ public class Game {
         }
     }
 
-//    private void setVictoryV(int victoryV) {
-//        this.victoryV = victoryV;
-//    }
+    private void increaseVictoryV() {
+        this.victoryV++;
+    }
 
     private void setJoueur(ArrayList<Player> joueur) {
         Joueur = joueur;
@@ -480,6 +482,8 @@ public class Game {
 
     public void winners(Player p){
         this.Winners.add(p);
-        this.Joueur.remove(p);
+        p.setUltimatum(victoryV);
+        increaseVictoryV();
+        //this.Joueur.remove(p);//probelme
     }
 }
