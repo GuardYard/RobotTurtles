@@ -236,7 +236,7 @@ public class Game {
     public void execute(Player P) {
 
         for (Card card : P.getProgram()) { //F => getHandCards() : getProgram YES
-            if (card.getCardName().equals("Blue Card")) {
+            if (card.getCardName().equals(ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET)) {
                 int x = P.getX();
                 int y = P.getY();
                 removeCell(x, y);
@@ -245,10 +245,10 @@ public class Game {
                 int y2 = newpos[1];
                 P.setpositon(x2, y2);
                 verifBlue(P, card, x2, y2);
-            } else if (card.getCardName().equals("Purple Card") || card.getCardName().equals("Yellow Card")) {         //Change la direction du player
+            } else if (card.getCardName().equals(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET) || card.getCardName().equals(ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET)) {         //Change la direction du player
                 String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
-            } else if (card.getCardName().equals("Laser Card")) {
+            } else if (card.getCardName().equals(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET)) {
                 int[] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
                 int x2 = posLaser[0];
                 int y2 = posLaser[1];
