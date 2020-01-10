@@ -60,12 +60,12 @@ public class Game {
                     }
                 }
             }
-        } while (Winners.size() < Joueur.size()-1);
+        } while (Winners.size() != Joueur.size() - 1);
          endTurn();
     }
 
     public void endTurn(){
-        System.out.println("Parmi les joueurs, celui qui a fini premier est : " + Winners.get(0).getName() + ":" + Winners.get(0).getScore());
+        System.out.println("Parmi les joueurs, celui qui a fini premier est : " + Winners.get(0).getName() + " avec " + Winners.get(0).getScore() + " points.");
         System.out.print("Nos vainqueurs sont : ");
         for(Player win : Winners){
             System.out.print(win.getName() + ", ");
@@ -74,6 +74,7 @@ public class Game {
     }
 
     private void prepare(Player player) {
+        viewCell();
         System.out.println("Voici votre jeu !");
         int finishPrep = 0;
         do {
