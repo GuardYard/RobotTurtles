@@ -119,7 +119,7 @@ public class Game {
             System.out.print("[");
             for (String[] strings : Cell) {
                 System.out.print(strings[i]);
-                System.out.print(", ");
+                System.out.print(",");
             }
             System.out.println("]");
         }
@@ -303,7 +303,7 @@ public class Game {
     }
 
     private void verif(Player P, Card card, int x2, int y2) {
-        if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "pierre"+ ConsoleColors.RESET)) /*cas Pierre*/) {
+        if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET)) /*cas Pierre*/) {
             System.out.println("Sorry! Une de vos actions n'aboutie pas");
         } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) { //verifié si il y a une tortue et cas jewel
             if (this.getJoueur().size() == 2) { //cas ou 2 players
@@ -328,7 +328,7 @@ public class Game {
                     P.setpositon(7, 0);
                 }
             }
-        } else if (this.getCell(x2, y2).equals("  P1  ") || this.getCell(x2, y2).equals("  P2  ") || this.getCell(x2, y2).equals("  P3  ") || this.getCell(x2, y2).equals("  P4  ")) {
+        } else if (this.getCell(x2, y2).equals("  P1 ") || this.getCell(x2, y2).equals("  P2 ") || this.getCell(x2, y2).equals("  P3 ") || this.getCell(x2, y2).equals("  P4 ")) {
 
             if (this.getJoueur().size() == 2) { //cas ou 2 players
 //              String str = getCell(x2,y2);
@@ -385,7 +385,7 @@ public class Game {
             decreaseCashPrize();
 
 
-        } else if (this.getCell(x2, y2).equals("  P1  ") || this.getCell(x2, y2).equals("  P2  ") || this.getCell(x2, y2).equals("  P3  ") || this.getCell(x2, y2).equals("  P4  ")) {
+        } else if (this.getCell(x2, y2).equals("  P1 ") || this.getCell(x2, y2).equals("  P2 ") || this.getCell(x2, y2).equals("  P3 ") || this.getCell(x2, y2).equals("  P4 ")) {
             if (this.getJoueur().size() == 2) { //cas ou 2 players
                 if (P.getNb() == 1) {
                     P.setpositon(1, 0);
@@ -453,7 +453,7 @@ public class Game {
 
             }
 
-        } else if (this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "pierre"+ ConsoleColors.RESET)) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+"glace "+ ConsoleColors.RESET)) {// rule in front of a wall
+        } else if (this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET)) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+"glace"+ ConsoleColors.RESET)) {// rule in front of a wall
             P.setDirection(card.play(P.getDirection()));
         }
     }

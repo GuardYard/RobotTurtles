@@ -13,7 +13,7 @@ public class Pierre extends Obstacles {
         this.cardName =(ConsoleColors.BLACK_UNDERLINED+"Pierre Card"+ ConsoleColors.RESET);
         this.description="Permet de posser un obstacle";
         this.destructible="indestructible !";
-        this.icon=(ConsoleColors.BLACK_UNDERLINED+ "pierre"+ ConsoleColors.RESET);
+        this.icon=(ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET);
     }
 
 

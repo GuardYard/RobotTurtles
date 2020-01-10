@@ -13,7 +13,7 @@ public class Glace extends Obstacles {
         this.cardName = (ConsoleColors.CYAN_BOLD+"Glace Card"+ ConsoleColors.RESET);
         this.description = "Permet de posser un obstacle";
         this.destructible="destructible avec un lazer!";
-        this.icon=(ConsoleColors.CYAN_BOLD+"glace "+ ConsoleColors.RESET);
+        this.icon=(ConsoleColors.CYAN_BOLD+"glace"+ ConsoleColors.RESET);
     }
 
     public int[] play() {
