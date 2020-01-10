@@ -72,33 +72,29 @@ public class Player {
     }
 
     public void seeCardOnHand(){            //F
-        System.out.print("[   ");
         int i = 1;
-        for(Card card : handCards){
+        for(  Card card : handCards){
             System.out.println(i +" : " + card.getCardName());
             i++;
         }
-        System.out.println("   ]");
     }
 
     public void seeObstacleOnHand(){            //F
-        System.out.print("[   ");
         int i = 0;
         for(Obstacles card : block){
             System.out.println(i + " : " + card.getCardName()+" ,");
             i++;
             }
-
-        System.out.println("   ]");
     }
 
 
-    public void seeCardOnProgram(){            //F
-        System.out.print("[   ");
+    public void seeCardOnProgram(){
+        //F
+        System.out.print("[ ");
         for(Card card : program){
             System.out.print(card.getCardName() + "  ;");
         }
-        System.out.println("   ]");
+        System.out.println(" ]");
     }
 
     public ArrayList<Obstacles> getBlock() {     //F

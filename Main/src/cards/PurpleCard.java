@@ -5,7 +5,7 @@ import game.ConsoleColors;
 public class PurpleCard extends Card {
     public PurpleCard(){
         this.cardName =(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET);
-        this.description="Permet de tourner à droite (l'action d'avancer n'est pas comprise avec cette carte)";
+        this.description="Allows to do a right-trun! ( no going forward )";
     }
 
 

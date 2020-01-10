@@ -7,7 +7,7 @@ import cards.PurpleCard;
 import java.util.*;
 
 public class Deck {
-    private String description = "Ceci est votre deck";
+    private String description = "This is your deck";
     public ArrayList<Card> deck = new ArrayList<Card>();
     Card B = new BlueCard();
     Card P = new PurpleCard();
@@ -48,7 +48,7 @@ public class Deck {
     public Card draw(){         //F
         Card pioche = deck.get(0);
         deck.remove(0);
-        System.out.println("Vous avez pioché une " + pioche.getCardName());
+        System.out.println("You picked a " + pioche.getCardName());
         return pioche;
     }
 

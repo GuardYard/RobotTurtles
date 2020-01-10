@@ -7,7 +7,7 @@ public class YellowCard extends Card {
     //test
     public YellowCard() {
         this.cardName = (ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET);
-        this.description = "Permet de tourner à gauche (l'action d'avancer n'est pas comprise avec cette carte)";
+        this.description = "Allows to do a left-turn ( no going forward )";
     }
 
 

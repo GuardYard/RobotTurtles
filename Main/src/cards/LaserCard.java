@@ -5,7 +5,7 @@ import game.ConsoleColors;
 public class LaserCard extends Card {           //F
     public LaserCard(){
         this.cardName =(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET);
-        this.description="Détruit l'obstacle devant le joueur";
+        this.description="Destroy the obstacle that's just in front of a player!";
     }
 
     public int[] playBlue(String direction, int X, int Y) {

@@ -5,7 +5,7 @@ import game.ConsoleColors;
 public class BlueCard extends Card {
     public BlueCard() {
         this.cardName = (ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET);
-        this.description = "Permet d'avancer en avant d'une case !";
+        this.description = "Allows to move up a case!";
     }
 
     public int[] playBlue(String direction, int X, int Y) {

@@ -26,7 +26,7 @@ public class Game {
         int nbJoueur;
         //Fonction de rappel les règles d'un jeu.
         do {
-            System.out.println("Combien de joueur? (2, 3 ou 4)");
+            System.out.println("How many players? (2, 3 or 4)");
             nbJoueur = sc.nextInt();
         } while (nbJoueur != 2 && nbJoueur != 3 && nbJoueur != 4);
         addPlayer(nbJoueur);
@@ -41,11 +41,11 @@ public class Game {
                     player.verifDeck(player);
                     int commande = 0;
                     do {
-                        System.out.println("Votre tortue regarde vers " + player.getDirection());
-                        System.out.println("C'est au tour de " + player.getName() + ". Veuillez choisir une action à effectuer.");
-                        System.out.println("Préparer vos déplacements   :   1");
-                        System.out.println("Executer                    :   2");
-                        System.out.println("Poser des obstacles         :   3");
+                        System.out.println("Your turtle is facing : " + player.getDirection());
+                        System.out.println("It's " + player.getName() + "'s turn! Please select an action.");
+                        System.out.println("Prepare your moves   :   1");
+                        System.out.println("Execute moves        :   2");
+                        System.out.println("Place obstacles      :   3");
                         commande = sc.nextInt();
                     } while (commande != 1 && commande != 2 && commande != 3);
                     if (commande == 1) {
@@ -55,6 +55,7 @@ public class Game {
                         viewCell();
                         //Fonction qui vérifie la victoire et change la valeur de victoryV (victoryV = 1 ===> Victoire)
                     } else if (commande == 3) {
+                        viewCell();
                         player.seeObstacleOnHand();
                         executeObstacles(player);
                         viewCell();
@@ -69,8 +70,8 @@ public class Game {
     }
 
     public void endTurn(){
-        System.out.println("Parmi les joueurs, celui qui a fini premier est : " + Winners.get(0).getName() + " avec " + Winners.get(0).getScore() + " points.");
-        System.out.print("Nos vainqueurs sont : ");
+        System.out.println("Congratulations!! " + Winners.get(0).getName() + " finished first! with " + Winners.get(0).getScore() + " points.");
+        System.out.print("Our winners are: ");
         for(Player win : Winners){
             System.out.print(win.getName() + ", ");
         }
@@ -79,25 +80,27 @@ public class Game {
 
     private void prepare(Player player) {
         viewCell();
-        System.out.println("Voici votre jeu !");
+        System.out.println("This is your deck! ");
         int finishPrep = 0;
         do {
             int chosenCard;
             do {
                 player.seeCardOnHand();
                 player.seeCardOnProgram();
-                System.out.println("Votre tortue regarde vers " + player.getDirection());
-                System.out.println("Choisissez l'ordre dans lequel vous voulez executer votre programme (1 : Premier carte de votre main, 2 : Deuxieme carte, etc...)");
+                System.out.println("Your turtle is facing : " + player.getDirection());
+                System.out.println("Please enter the order in which you want to execute your program!"+"\n"+" (1 : First card on hand, 2 : Second card, etc...)");
                 chosenCard = sc.nextInt()-1;
             } while (chosenCard < 0 || chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
             player.addToProgram(player, player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
 
             String choixContinue = "";
+
             do {
-                System.out.println("Voulez-vous continuer a mettre des cartes dans votre programme? (Oui : O; Non : N)");
+                System.out.println("Do you want to continue to add cards in your program? (Yes : Y; No : N)");
+                choixContinue = sc.nextLine();
                 choixContinue = sc.nextLine();
                 choixContinue = choixContinue.toUpperCase(); //securité
-            } while (!choixContinue.equals("O") && !choixContinue.equals("N"));
+            } while (!choixContinue.equals("Y") && !choixContinue.equals("N"));
             if (choixContinue.equals("N")) {
                 finishPrep = 1;
             }
@@ -239,7 +242,7 @@ public class Game {
         this.cashPrize = P;
         sc.nextLine();
         for (Player elem : this.Joueur) {
-            System.out.println("Quel est le nom du joueur " + elem.getName() + " ?");
+            System.out.println("What is player " + elem.getName() + "'s name ?");
             String name = sc.nextLine();
             elem.setName(name);
         }
@@ -275,12 +278,12 @@ public class Game {
     public void executeObstacles(Player P) {
         int pos;
         do {
-            System.out.println("Veuillez choisir quelle obstacle vous voulez");
+            System.out.println("Please enter what obstacle you want");
             pos = sc.nextInt();
         } while (pos > P.getBlock().size());
         int[] position = P.getBlock().get(pos).play();
         if (!this.getCell(position[0], position[1]).equals("     ")) {
-            System.out.println("Cette case est déjà occupé, veuillez réessayer?");
+            System.out.println("This place is taken, please choose another");
             executeObstacles(P);
         } else {
             setCell(P.getBlock().get(pos).getIcon(), position[0], position[1]);
@@ -314,7 +317,7 @@ public class Game {
 
     private void verif(Player P, Card card, int x2, int y2) {
         if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET)) /*cas Pierre*/) {
-            System.out.println("Sorry! Une de vos actions n'aboutie pas");
+            System.out.println("Sorry! one of your actions is not possible!");
         } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) { //verifié si il y a une tortue et cas jewel
             if (this.getJoueur().size() == 2) { //cas ou 2 players
                 P.setDirection(card.play(P.getDirection()));
@@ -463,7 +466,7 @@ public class Game {
 
             }
 
-        } else if (this.getCell(x2, y2).equals(ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+"glace"+ ConsoleColors.RESET)) {// rule in front of a wall
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+" ice "+ ConsoleColors.RESET)) {// rule in front of a wall
             P.setDirection(card.play(P.getDirection()));
         }
         else if(this.getCell(x2,y2).equals("     ")){
