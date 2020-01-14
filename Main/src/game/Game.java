@@ -356,8 +356,11 @@ public class Game {
             }
 
         }
-        else {
+        else if(this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+" ice "+ ConsoleColors.RESET)) {
             removeCell(x2, y2);
+
+        } else{
+            System.out.println("Sorry, your action is not possible !");
         }
     }
     private void verifBlue(Player P, Card card, int x2, int y2) {
