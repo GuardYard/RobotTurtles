@@ -22,7 +22,7 @@ public class LaserCard extends Card {           //F
     }
 
 
-    public String play(String dir) {
+    public String play(String dir) { //pour les direction oposées
         String direction = "";
         if(dir.equals("North")){
             direction = "South";

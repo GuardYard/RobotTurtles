@@ -23,7 +23,7 @@ public class BlueCard extends Card {
 
     }
 
-    public String play(String dir) {
+    public String play(String dir) { //pour la direction oposée
         String direction = "";
         if(dir.equals("North")){
             direction = "South";

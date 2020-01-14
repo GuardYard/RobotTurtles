@@ -5,8 +5,6 @@ import game.ConsoleColors;
 
 import java.util.*;
 
-//chaque joueur doit avoir 3
-//interdit de bloquer l’accès aux joyaux & d’encercler un joyau ou un autre joueur
 
 public class Pierre extends Obstacles {
     public Pierre(){

@@ -1,14 +1,13 @@
 package cards;
-//chaque joueur doit avoir 2
+
 
 import game.ConsoleColors;
-
 import java.util.Scanner;
 
-//interdit de bloquer l’accès aux joyaux & d’encercler un joyau ou un autre joueur
+
 public class Glace extends Obstacles {
 
-    //test
+
     public Glace() {
         this.cardName = (ConsoleColors.CYAN_BOLD+"Ice Card"+ ConsoleColors.RESET);
         this.description = "Allows to place an obstacle";

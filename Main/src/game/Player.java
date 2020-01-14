@@ -22,11 +22,9 @@ public class Player {
     private ArrayList<Obstacles> block = new ArrayList<Obstacles>();
     private int X;
     private int Y;
-
-
     public Deck deck = new Deck();
 
-    //    block = {}
+
     public void Player1() {
         this.nb = 1;
         this.name = "Player 1";
@@ -45,7 +43,6 @@ public class Player {
         this.deck.setDeck();
 
     }
-
 
     public void Player3() {
         this.nb=3;
@@ -67,9 +64,42 @@ public class Player {
 
     }
 
-    public Deck getDeck() {
-        return deck;
+
+    public void initObstacle(){
+        Obstacles cartep = new Pierre();
+        Obstacles carteg = new Glace();
+        //pierre
+        for ( int ii = 0 ; ii < 3; ii++){
+            this.block.add(cartep);
+        }
+        for ( int ii = 0 ; ii < 2; ii++){
+            this.block.add(carteg);
+        }
     }
+
+
+    public void pickCardOnDeck() {      //F
+        Card pioche = deck.draw();
+        handCards.add(pioche);
+    }
+
+
+    public void verifHand(Player P){
+        int f  = P.getHandCards().size();
+        if (f<5){ // if the players hand is less than 5 cards we draw
+            int nbPioche = 5-f;
+            for(int i = 0; i<nbPioche; i++){
+                P.pickCardOnDeck();
+            }
+        }
+    }
+
+    public void verifDeck(Player P){
+        if(P.getDeck().getDeck().size() == 0){
+            P.deck.setDeck(P.cardPicked); // if the deck is empty, we put all card picked in it to fill
+        }
+    }
+
 
     public void seeCardOnHand(){            //F
         int i = 1;
@@ -87,7 +117,6 @@ public class Player {
             }
     }
 
-
     public void seeCardOnProgram(){
         //F
         System.out.print("[ ");
@@ -97,6 +126,20 @@ public class Player {
         System.out.println(" ]");
     }
 
+
+    public void addCardPicked (Card card){
+        this.cardPicked.add(card);
+
+    }
+
+    public void addToProgram(Player P, Card action) {
+        program.add(action);
+        //P.getHandCards().remove(action); juste pour sécurité
+        P.removeCFH(action);
+    }
+
+
+    //GETTERS
     public ArrayList<Obstacles> getBlock() {     //F
         return block;
     }
@@ -122,58 +165,19 @@ public class Player {
         return Y;
     }       //F
 
-    public void setName(String name) {      //F
-        this.name = name;
-    }
-
-    public void pickCardOnDeck() {      //F
-        Card pioche = deck.draw();
-        handCards.add(pioche);
-    }
-
-    public void verifHand(Player P){            //A vérifier- dp we need an else
-        int f  = P.getHandCards().size();
-        if (f<5){ // if the players hand is less than 5 cards we draw
-            int nbPioche = 5-f;
-            for(int i = 0; i<nbPioche; i++){
-                P.pickCardOnDeck();
-            }
-        }
-    }
-
-    public void verifDeck(Player P){
-        if(P.getDeck().getDeck().size() == 0){
-            P.deck.setDeck(P.cardPicked); // if the deck is emty, we put all card picked in it to fill
-        }
-    }
-
-
-
-    public void addToProgram(Player P, Card action) {  //PF- what order does the player want
-        program.add(action);
-        //P.getHandCards().remove(action); Code se secours, uptade
-        P.removeCFH(action);
-    }
-
-    public void setBlock() {
-
-    }
-    public void setDirection(String direction) {        //F
-        this.direction = direction;
-    }
-
-    public void setPassageOrder(int passageOrder) {
-        this.passageOrder = passageOrder;
-    }
-
     public String getName() {           //F
         return this.name;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 
     public String getIcontest() {           //F
         return this.icontest;
     }
-// no use-just for calling
+        // no use-just for calling
+
     public ArrayList<Card> getProgram() {
         return program;
     }
@@ -185,7 +189,6 @@ public class Player {
     public String getDirection() {
         return this.direction;
     }
-
 
     public int getPassageOrder() {
         return this.passageOrder;
@@ -199,6 +202,28 @@ public class Player {
         return ultimatum;
     }
 
+    public ArrayList<Card> getCardPicked() {
+        return cardPicked;
+    }
+
+
+    //SETTERS
+    public void setName(String name) {      //F
+        this.name = name;
+    }
+
+    public void setBlock() {
+
+    }
+
+    public void setDirection(String direction) {        //F
+        this.direction = direction;
+    }
+
+    public void setPassageOrder(int passageOrder) {
+        this.passageOrder = passageOrder;
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
@@ -207,26 +232,8 @@ public class Player {
         this.ultimatum = ultimatum;
     }
 
-    public void initObstacle(){
-        Obstacles cartep = new Pierre();
-        Obstacles carteg = new Glace();
-        //pierre
-        for ( int ii = 0 ; ii < 3; ii++){
-            this.block.add(cartep);
-        }
-        for ( int ii = 0 ; ii < 2; ii++){
-            this.block.add(carteg);
-        }
-    }
 
-    public ArrayList<Card> getCardPicked() {
-        return cardPicked;
-    }
-
-    public void addCardPicked (Card card){
-        this.cardPicked.add(card);
-
-    }
+    //REMOVE
 
     public void removeCFH (Card card){
         this.handCards.remove(card);

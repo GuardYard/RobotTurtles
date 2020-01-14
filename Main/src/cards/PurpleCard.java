@@ -13,7 +13,7 @@ public class PurpleCard extends Card {
         return new int[0];
     }
 
-    public String play(String dir) {
+    public String play(String dir) { //direction apres un purple card
         String direction = "";
         if(dir.equals("North")){
             direction = "East";

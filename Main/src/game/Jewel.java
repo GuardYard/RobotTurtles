@@ -25,7 +25,4 @@ public class Jewel {
 
     }
 
-    //set X
-    //set Y
-    //get icon (return)
 }

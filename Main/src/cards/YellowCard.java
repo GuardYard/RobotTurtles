@@ -4,7 +4,7 @@ import game.ConsoleColors;
 
 public class YellowCard extends Card {
 
-    //test
+
     public YellowCard() {
         this.cardName = (ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET);
         this.description = "Allows to do a left-turn ( no going forward )";
@@ -15,7 +15,7 @@ public class YellowCard extends Card {
         return new int[0];
     }
 
-    public String play(String dir) {
+    public String play(String dir) { //direction apres une yellow card
         String direction = "";
         if (dir.equals("North")) {
             direction = "West";

@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Deck {
     private String description = "This is your deck";
-    public ArrayList<Card> deck = new ArrayList<Card>();
+    public ArrayList<Card> deck = new ArrayList<Card>(); //liste qui contient les cartes
     Card B = new BlueCard();
     Card P = new PurpleCard();
     Card Y = new YellowCard();
@@ -27,7 +27,7 @@ public class Deck {
         for(int i=0; i<3; i++) {
             this.deck.add(L);
         }
-        Collections.shuffle(this.deck);
+        Collections.shuffle(this.deck); //Qpourqoui on fait un shuffle 3 fois?
         Collections.shuffle(this.deck);
         Collections.shuffle(this.deck);
     }

@@ -12,10 +12,17 @@ public class Game {
     private ArrayList<Player> Joueur = new ArrayList<Player>();
     private ArrayList<Jewel> Jewel = new ArrayList<Jewel>();
     private ArrayList<Player> Winners = new ArrayList<Player>();
-    private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}, {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
     private int victoryV = 1;
-    private int nbTurn;  //Nombre de tour optionel
+    private int nbTurn;  //variable qui stock le nombre de tours
     private int cashPrize;
+    private String[][] Cell = {{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "},
+            {"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}};
 
     public String[][] getCell() {
         return Cell;
@@ -24,7 +31,6 @@ public class Game {
 
     public void init() {
         int nbJoueur;
-        //Fonction de rappel les règles d'un jeu.
         do {
             System.out.println("How many players? (2, 3 or 4)");
             nbJoueur = sc.nextInt();
@@ -49,11 +55,10 @@ public class Game {
                         commande = sc.nextInt();
                     } while (commande != 1 && commande != 2 && commande != 3);
                     if (commande == 1) {
-                        prepare(player);//Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main F
+                        prepare(player);//Fonction de préparation de la liste "programme" : Demande d'un ordre au joueur par rapport à sa main
                     } else if (commande == 2) {
                         execute(player);
                         viewCell();
-                        //Fonction qui vérifie la victoire et change la valeur de victoryV (victoryV = 1 ===> Victoire)
                     } else if (commande == 3) {
                         viewCell();
                         player.seeObstacleOnHand();
@@ -80,7 +85,7 @@ public class Game {
 
     private void prepare(Player player) {
         viewCell();
-        System.out.println("This is your deck! ");
+        System.out.println("This is your hand! ");
         int finishPrep = 0;
         do {
             int chosenCard;
@@ -88,7 +93,8 @@ public class Game {
                 player.seeCardOnHand();
                 player.seeCardOnProgram();
                 System.out.println("Your turtle is facing : " + player.getDirection());
-                System.out.println("Please enter the order in which you want to execute your program!"+"\n"+" (1 : First card on hand, 2 : Second card, etc...)");
+                System.out.println("Please enter the order in which you want to execute your program!"+"" +
+                        "\n"+" (1 : First card on hand, 2 : Second card, etc...)");
                 chosenCard = sc.nextInt()-1;
             } while (chosenCard < 0 || chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
             player.addToProgram(player, player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
@@ -97,7 +103,6 @@ public class Game {
 
             do {
                 System.out.println("Do you want to continue to add cards in your program? (Yes : Y; No : N)");
-                choixContinue = sc.nextLine();
                 choixContinue = sc.nextLine();
                 choixContinue = choixContinue.toUpperCase(); //securité
             } while (!choixContinue.equals("Y") && !choixContinue.equals("N"));
@@ -122,7 +127,7 @@ public class Game {
 
     public void viewCell() { //F
         update();
-        //axe sur X
+        //echelle axe sur X
         System.out.print("    ");
         for (int i = 0; i < Cell.length; i++){
             System.out.print("[ "+ i+ " ] ");
@@ -142,12 +147,11 @@ public class Game {
     public void addPlayer(int P) {
         //F
         ArrayList<Integer> NbO = new ArrayList<Integer>();
-        if (P == 2) {
+        if (P == 2) { //cas pour 2 players
             Player P1 = new Player();
             Player P2 = new Player();
             Jewel J1 = new Jewel();
             J1.setPosition(3, 7);
-            //this.setCell(J1.getIcon(), J1.getX(),J1.getY()); REMOVE LATER
             P1.Player1();
             P2.Player2();
             P1.initObstacle();
@@ -166,7 +170,7 @@ public class Game {
             for(int i = 0; i<8; i++){
                 setCell(stoneWall.getIcon(), 7, i);
             }
-        } else if (P == 3) {
+        } else if (P == 3) { //cas pour 3 players
             Player P1 = new Player();
             Player P2 = new Player();
             Player P3 = new Player();
@@ -202,7 +206,7 @@ public class Game {
             for(int i = 0; i<8; i++){
                 setCell(stoneWall.getIcon(), 7, i);
             }
-        } else if (P == 4) {
+        } else if (P == 4) { //cas pour 4 players
             Player P1 = new Player();
             Player P2 = new Player();
             Player P3 = new Player();
@@ -249,76 +253,42 @@ public class Game {
         setJoueur(initOrder(this.Joueur));
     }
 
-
-    public void execute(Player P) {
-
-        for (Card card : P.getProgram()) { //F => getHandCards() : getProgram YES
-            if (card.getCardName().equals(ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET)) {
-                int x = P.getX();
-                int y = P.getY();
-                removeCell(x, y);
-                int[] newpos = card.playBlue(P.getDirection(), x, y);
-                int x2 = newpos[0];
-                int y2 = newpos[1];
-                verifBlue(P, card, x2, y2);
-            } else if (card.getCardName().equals(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET) || card.getCardName().equals(ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET)) {         //Change la direction du player
-                String newdir = card.play(P.getDirection());
-                P.setDirection(newdir);
-            } else if (card.getCardName().equals(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET)) {
-                int[] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
-                int x2 = posLaser[0];
-                int y2 = posLaser[1];
-                verif(P, card, x2, y2);
-            }
-            P.addCardPicked(card);
-        }
-        P.getProgram().clear();
-    }
-
-    public void executeObstacles(Player P) {
-        int pos;
-        do {
-            System.out.println("Please enter what obstacle you want");
-            pos = sc.nextInt();
-        } while (pos > P.getBlock().size());
-        int[] position = P.getBlock().get(pos).play();
-        if (!this.getCell(position[0], position[1]).equals("     ")) {
-            System.out.println("This place is taken, please choose another");
-            executeObstacles(P);
-        } else {
-            setCell(P.getBlock().get(pos).getIcon(), position[0], position[1]);
-            P.getBlock().remove(pos);
-        }
-    }
-
     private void increaseVictoryV() {
         this.victoryV++;
-    }
-
-    private void setJoueur(ArrayList<Player> joueur) {
-        Joueur = joueur;
     }
 
     private void removeCell(int x, int y) {
         Cell[x][y] = "     ";
     }
 
-    public void setCell(String icon, int x, int y) {
-        Cell[x][y] = icon;
+    public void decreaseCashPrize() {
+        this.cashPrize--;
     }
 
-    public String getCell(int x, int y) {
-        return Cell[x][y];
+    public void update() { //F
+        for (Player P : Joueur) {
+            setCell(P.getIcontest(), P.getX(), P.getY());
+        }
+        for (Jewel jewel : Jewel) {
+            setCell(jewel.getIcon(), jewel.getX(), jewel.getY());
+        }
     }
 
-    public ArrayList<Player> getJoueur() {
-        return Joueur;
+    public void winners(Player p){
+        this.Winners.add(p);
+        p.setUltimatum(victoryV);
+        increaseVictoryV();
+        //this.Joueur.remove(p);//pb
     }
 
+    //VERIFICATIONS
     private void verif(Player P, Card card, int x2, int y2) {
         if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET)) /*cas Pierre*/) {
+
             System.out.println("Sorry! one of your actions is not possible!");
-        } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) { //verifié si il y a une tortue et cas jewel
+
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) {
+            //verifié si il y a une tortue et cas jewel
             if (this.getJoueur().size() == 2) { //cas ou 2 players
                 P.setDirection(card.play(P.getDirection()));
 
@@ -385,16 +355,16 @@ public class Game {
                 }
             }
 
-            }
+        }
         else {
             removeCell(x2, y2);
         }
     }
-
     private void verifBlue(Player P, Card card, int x2, int y2) {
+
         if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) {//we know that there will be a jewel in front
             P.setScore(this.cashPrize);
-            winners(P);     //Fonction ajout dans Winners & suppression de la liste normal
+            winners(P);
             decreaseCashPrize();
 
 
@@ -474,19 +444,55 @@ public class Game {
         }
     }
 
-    public void decreaseCashPrize() {
-        this.cashPrize--;
+    //EXECUTE
+    public void execute(Player P) { //on execute chauqe type de cartes
+        for (Card card : P.getProgram()) { //F => getHandCards() : getProgram
+            if (card.getCardName().equals(ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET)) {
+                int x = P.getX();
+                int y = P.getY();
+                removeCell(x, y);
+                int[] newpos = card.playBlue(P.getDirection(), x, y);
+                int x2 = newpos[0];
+                int y2 = newpos[1];
+                verifBlue(P, card, x2, y2);
+            } else if (card.getCardName().equals(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET) || card.getCardName().equals(ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET)) {         //Change la direction du player
+                String newdir = card.play(P.getDirection());
+                P.setDirection(newdir);
+            } else if (card.getCardName().equals(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET)) {
+                int[] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
+                int x2 = posLaser[0];
+                int y2 = posLaser[1];
+                verif(P, card, x2, y2);
+            }
+            P.addCardPicked(card);
+        }
+        P.getProgram().clear();
+    }
+    public void executeObstacles(Player P) {
+        int pos;
+        do {
+            System.out.println("Please enter what obstacle you want");
+            pos = sc.nextInt();
+        } while (pos > P.getBlock().size());
+        int[] position = P.getBlock().get(pos).play();
+        if (!this.getCell(position[0], position[1]).equals("     ")) {
+            System.out.println("This place is taken, please choose another");
+            executeObstacles(P);
+        } else {
+            setCell(P.getBlock().get(pos).getIcon(), position[0], position[1]);
+            P.getBlock().remove(pos);
+        }
     }
 
-    public void update() { //F
-        for (Player P : Joueur) {
-            setCell(P.getIcontest(), P.getX(), P.getY());
-        }
-        for (Jewel jewel : Jewel) {
-            setCell(jewel.getIcon(), jewel.getX(), jewel.getY());
-        }
+    //SETTERS
+    private void setJoueur(ArrayList<Player> joueur) {
+        Joueur = joueur;
+    }
+    public void setCell(String icon, int x, int y) {
+        Cell[x][y] = icon;
     }
 
+    //GETTERS
     public int getPlayer(String str) {
         int i = 0;
         for (Player p : Joueur) {
@@ -496,11 +502,12 @@ public class Game {
         }
         return i;
     }
-
-    public void winners(Player p){
-        this.Winners.add(p);
-        p.setUltimatum(victoryV);
-        increaseVictoryV();
-        //this.Joueur.remove(p);//probelme
+    public String getCell(int x, int y) {
+        return Cell[x][y];
     }
+    public ArrayList<Player> getJoueur() {
+        return Joueur;
+    }
+
+
 }
