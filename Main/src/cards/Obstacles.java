@@ -10,7 +10,7 @@ public abstract class Obstacles {
     String destructible;
     String icon;
 
-    public String getCardName(){
+    public String getCardName() {
         return this.cardName;
     }
 

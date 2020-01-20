@@ -1,10 +1,7 @@
 package cards;
 
-import cards.BlueCard;
-import cards.Card;
-import cards.PurpleCard;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
     private String description = "This is your deck";

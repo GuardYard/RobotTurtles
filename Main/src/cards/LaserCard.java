@@ -4,7 +4,7 @@ import game.ConsoleColors;
 
 public class LaserCard extends Card {           //F
     public LaserCard(){
-        this.cardName =(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET);
+        this.cardName =(ConsoleColors.RED + "Laser Card" + ConsoleColors.RESET);
         this.description="Destroy the obstacle that's just in front of a player!";
     }
 

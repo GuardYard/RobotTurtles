@@ -4,7 +4,7 @@ import game.ConsoleColors;
 
 public class BlueCard extends Card {
     public BlueCard() {
-        this.cardName = (ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET);
+        this.cardName = (ConsoleColors.BLUE + "Blue Card" + ConsoleColors.RESET);
         this.description = "Allows to move up a case!";
     }
 

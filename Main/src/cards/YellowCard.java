@@ -6,7 +6,7 @@ public class YellowCard extends Card {
 
 
     public YellowCard() {
-        this.cardName = (ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET);
+        this.cardName = (ConsoleColors.YELLOW + "Yellow Card" + ConsoleColors.RESET);
         this.description = "Allows to do a left-turn ( no going forward )";
     }
 

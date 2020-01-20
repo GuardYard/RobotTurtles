@@ -4,7 +4,7 @@ import game.ConsoleColors;
 
 public class PurpleCard extends Card {
     public PurpleCard(){
-        this.cardName =(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET);
+        this.cardName =(ConsoleColors.PURPLE + "Purple Card" + ConsoleColors.RESET);
         this.description="Allows to do a right-trun! ( no going forward )";
     }
 

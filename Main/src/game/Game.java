@@ -1,8 +1,12 @@
 package game;
 
-import cards.*;
+import cards.Card;
+import cards.Obstacles;
+import cards.Pierre;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class Game {
     public Scanner sc = new Scanner(System.in);
@@ -38,7 +42,7 @@ public class Game {
     }
 
     public void turn() {
-        while (Winners.size() < Joueur.size() - 1){
+        while (Winners.size() < Joueur.size() - 1) {
             for (Player player : this.Joueur) {
                 if (player.getUltimatum() == 0) {
                     player.verifHand(player);
@@ -64,18 +68,18 @@ public class Game {
                         viewCell();
                     }
                 }
-                if(Winners.size() == Joueur.size() - 1){
+                if (Winners.size() == Joueur.size() - 1) {
                     break;
                 }
             }
         }
-         endTurn();
+        endTurn();
     }
 
-    public void endTurn(){
+    public void endTurn() {
         System.out.println("Congratulations!! " + Winners.get(0).getName() + " finished first! with " + Winners.get(0).getScore() + " points.");
         System.out.print("Our winners are: ");
-        for(Player win : Winners){
+        for (Player win : Winners) {
             System.out.print(win.getName() + ", ");
         }
 
@@ -91,9 +95,9 @@ public class Game {
                 player.seeCardOnHand();
                 player.seeCardOnProgram();
                 System.out.println("Your turtle is facing : " + player.getDirection());
-                System.out.println("Please enter the order in which you want to execute your program!"+"" +
-                        "\n"+" (1 : First card on hand, 2 : Second card, etc...)");
-                chosenCard = sc.nextInt()-1;
+                System.out.println("Please enter the order in which you want to execute your program!" + "" +
+                        "\n" + " (1 : First card on hand, 2 : Second card, etc...)");
+                chosenCard = sc.nextInt() - 1;
             } while (chosenCard < 0 || chosenCard >= player.getHandCards().size()); //on met ChosenCard parce que ça verifie qu'on demande une position qui existe
             player.addToProgram(player, player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
 
@@ -127,13 +131,13 @@ public class Game {
         update();
         //echelle axe sur X
         System.out.print("    ");
-        for (int i = 0; i < Cell.length; i++){
-            System.out.print("[ "+ i+ " ] ");
+        for (int i = 0; i < Cell.length; i++) {
+            System.out.print("[ " + i + " ] ");
         }
         System.out.print('\n');
 
         for (int i = 0; i < Cell.length; i++) {
-            System.out.print("["+i+"]["); // on met l'echelle en Y
+            System.out.print("[" + i + "]["); // on met l'echelle en Y
             for (String[] strings : Cell) {
                 System.out.print(strings[i]);
                 System.out.print(",");
@@ -165,7 +169,7 @@ public class Game {
             this.Joueur.add(P1);
             this.Joueur.add(P2);
             Obstacles stoneWall = new Pierre();
-            for(int i = 0; i<8; i++){
+            for (int i = 0; i < 8; i++) {
                 setCell(stoneWall.getIcon(), 7, i);
             }
         } else if (P == 3) { //cas pour 3 players
@@ -201,7 +205,7 @@ public class Game {
             this.Joueur.add(P2);
             this.Joueur.add(P3);
             Obstacles stoneWall = new Pierre();
-            for(int i = 0; i<8; i++){
+            for (int i = 0; i < 8; i++) {
                 setCell(stoneWall.getIcon(), 7, i);
             }
         } else if (P == 4) { //cas pour 4 players
@@ -272,7 +276,7 @@ public class Game {
         }
     }
 
-    public void winners(Player p){
+    public void winners(Player p) {
         this.Winners.add(p);
         p.setUltimatum(victoryV);
         increaseVictoryV();
@@ -281,11 +285,11 @@ public class Game {
 
     //VERIFICATIONS
     private void verif(Player P, Card card, int x2, int y2) {
-        if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET)) /*cas Pierre*/) {
+        if (this.getCell(x2, y2).equals("     ") /*cas Rien*/ || this.getCell(x2, y2).equals((ConsoleColors.BLACK_UNDERLINED + "rock " + ConsoleColors.RESET)) /*cas Pierre*/) {
 
             System.out.println("Sorry! one of your actions is not possible!");
 
-        } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) {
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT + "  *  " + ConsoleColors.RESET)) {
             //verifié si il y a une tortue et cas jewel
             if (this.getJoueur().size() == 2) { //cas ou 2 players
                 P.setDirection(card.play(P.getDirection()));
@@ -314,56 +318,56 @@ public class Game {
             if (this.getJoueur().size() == 2) { //cas ou 2 players
 //              String str = getCell(x2,y2);
 //              int rang = getPlayer(str); rang equals to the players position in Joueur (List)
-                this.getJoueur().get(getPlayer(getCell(x2,y2))).setDirection(card.play(P.getDirection())); //Pour code equivalent getPlayer(getCell(x2,y2)) ==> rang
+                this.getJoueur().get(getPlayer(getCell(x2, y2))).setDirection(card.play(P.getDirection())); //Pour code equivalent getPlayer(getCell(x2,y2)) ==> rang
 
-            } else if (this.getJoueur().size() == 3){
+            } else if (this.getJoueur().size() == 3) {
 
-                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(3, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(3, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 3) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(6, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(6, 0);
 
                 }
 
-            } else if (this.getJoueur().size() == 4){
+            } else if (this.getJoueur().size() == 4) {
 
-                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(2, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(2, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 3) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(5, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 4) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 4) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(7, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(7, 0);
 
                 }
             }
 
-        }
-        else if(this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+" ice "+ ConsoleColors.RESET)) {
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD + " ice " + ConsoleColors.RESET)) {
             removeCell(x2, y2);
 
-        } else{
+        } else {
             System.out.println("Sorry,  your action is not possible !");
         }
     }
+
     private void verifBlue(Player P, Card card, int x2, int y2) {
 
-        if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT+"  *  "+ ConsoleColors.RESET)) {//we know that there will be a jewel in front
+        if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT + "  *  " + ConsoleColors.RESET)) {//we know that there will be a jewel in front
             P.setScore(this.cashPrize);
             winners(P);
             decreaseCashPrize();
@@ -376,11 +380,11 @@ public class Game {
                 } else if (P.getNb() == 2) {
                     P.setpositon(5, 0);
                 }
-                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(1, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(1, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
                     this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
                 }
@@ -393,17 +397,17 @@ public class Game {
                 } else if (P.getNb() == 3) {
                     P.setpositon(6, 0);
                 }
-                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(3, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(3, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 3) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(6, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(6, 0);
 
                 }
 
@@ -417,30 +421,29 @@ public class Game {
                 } else if (P.getNb() == 4) {
                     P.setpositon(7, 0);
                 }
-                if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 1) {
+                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(0, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 2) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(2, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(2, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 3) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(5, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2,y2))).getNb() == 4) {
+                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 4) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2,y2))).setpositon(7, 0);
+                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(7, 0);
 
                 }
 
             }
 
-        } else if (this.getCell(x2, y2).equals(ConsoleColors.BLACK_UNDERLINED+ "rock "+ ConsoleColors.RESET) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD+" ice "+ ConsoleColors.RESET)) {// rule in front of a wall
+        } else if (this.getCell(x2, y2).equals(ConsoleColors.BLACK_UNDERLINED + "rock " + ConsoleColors.RESET) || this.getCell(x2, y2).equals(ConsoleColors.CYAN_BOLD + " ice " + ConsoleColors.RESET)) {// rule in front of a wall
             P.setDirection(card.play(P.getDirection()));
-        }
-        else if(this.getCell(x2,y2).equals("     ")){
+        } else if (this.getCell(x2, y2).equals("     ")) {
             P.setpositon(x2, y2);
         }
     }
@@ -448,7 +451,7 @@ public class Game {
     //EXECUTE
     public void execute(Player P) { //on execute chauqe type de cartes
         for (Card card : P.getProgram()) { //F => getHandCards() : getProgram
-            if (card.getCardName().equals(ConsoleColors.BLUE+ "Blue Card"+ ConsoleColors.RESET)) {
+            if (card.getCardName().equals(ConsoleColors.BLUE + "Blue Card" + ConsoleColors.RESET)) {
                 int x = P.getX();
                 int y = P.getY();
                 removeCell(x, y);
@@ -456,10 +459,10 @@ public class Game {
                 int x2 = newpos[0];
                 int y2 = newpos[1];
                 verifBlue(P, card, x2, y2);
-            } else if (card.getCardName().equals(ConsoleColors.PURPLE+"Purple Card"+ConsoleColors.RESET) || card.getCardName().equals(ConsoleColors.YELLOW+"Yellow Card"+ConsoleColors.RESET)) {         //Change la direction du player
+            } else if (card.getCardName().equals(ConsoleColors.PURPLE + "Purple Card" + ConsoleColors.RESET) || card.getCardName().equals(ConsoleColors.YELLOW + "Yellow Card" + ConsoleColors.RESET)) {         //Change la direction du player
                 String newdir = card.play(P.getDirection());
                 P.setDirection(newdir);
-            } else if (card.getCardName().equals(ConsoleColors.RED+"Laser Card"+ ConsoleColors.RESET)) {
+            } else if (card.getCardName().equals(ConsoleColors.RED + "Laser Card" + ConsoleColors.RESET)) {
                 int[] posLaser = card.playBlue(P.getDirection(), P.getX(), P.getY());
                 int x2 = posLaser[0];
                 int y2 = posLaser[1];
@@ -469,6 +472,7 @@ public class Game {
         }
         P.getProgram().clear();
     }
+
     public void executeObstacles(Player P) {
         int pos;
         do {
@@ -485,10 +489,6 @@ public class Game {
         }
     }
 
-    //SETTERS
-    private void setJoueur(ArrayList<Player> joueur) {
-        Joueur = joueur;
-    }
     public void setCell(String icon, int x, int y) {
         Cell[x][y] = icon;
     }
@@ -503,11 +503,18 @@ public class Game {
         }
         return i;
     }
+
     public String getCell(int x, int y) {
         return Cell[x][y];
     }
+
     public ArrayList<Player> getJoueur() {
         return Joueur;
+    }
+
+    //SETTERS
+    private void setJoueur(ArrayList<Player> joueur) {
+        Joueur = joueur;
     }
 
 

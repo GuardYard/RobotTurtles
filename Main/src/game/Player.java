@@ -2,11 +2,10 @@ package game;
 
 import cards.*;
 
-import java.util.*;
-
-import java.util.*;
+import java.util.ArrayList;
 
 public class Player {
+    public Deck deck = new Deck();
     private String icontest = "";
     private String color = "";
     private int passageOrder;//Random order
@@ -22,8 +21,6 @@ public class Player {
     private ArrayList<Obstacles> block = new ArrayList<Obstacles>();
     private int X;
     private int Y;
-    public Deck deck = new Deck();
-
 
     public void Player1() {
         this.nb = 1;
@@ -32,7 +29,7 @@ public class Player {
         this.color = "Red";
         this.direction = "South";
         this.deck.setDeck();
-        }
+    }
 
     public void Player2() {
         this.nb = 2;
@@ -45,7 +42,7 @@ public class Player {
     }
 
     public void Player3() {
-        this.nb=3;
+        this.nb = 3;
         this.name = "Player 3";
         this.icontest = "  P3 ";
         this.color = "Green";
@@ -55,7 +52,7 @@ public class Player {
     }
 
     public void Player4() {
-        this.nb=4;
+        this.nb = 4;
         this.name = "Player 4";
         this.icontest = "  P4 ";
         this.color = "Pink";
@@ -65,14 +62,14 @@ public class Player {
     }
 
 
-    public void initObstacle(){
+    public void initObstacle() {
         Obstacles cartep = new Pierre();
         Obstacles carteg = new Glace();
         //pierre
-        for ( int ii = 0 ; ii < 3; ii++){
+        for (int ii = 0; ii < 3; ii++) {
             this.block.add(cartep);
         }
-        for ( int ii = 0 ; ii < 2; ii++){
+        for (int ii = 0; ii < 2; ii++) {
             this.block.add(carteg);
         }
     }
@@ -84,50 +81,50 @@ public class Player {
     }
 
 
-    public void verifHand(Player P){
-        int f  = P.getHandCards().size();
-        if (f<5){ // if the players hand is less than 5 cards we draw
-            int nbPioche = 5-f;
-            for(int i = 0; i<nbPioche; i++){
+    public void verifHand(Player P) {
+        int f = P.getHandCards().size();
+        if (f < 5) { // if the players hand is less than 5 cards we draw
+            int nbPioche = 5 - f;
+            for (int i = 0; i < nbPioche; i++) {
                 P.pickCardOnDeck();
             }
         }
     }
 
-    public void verifDeck(Player P){
-        if(P.getDeck().getDeck().size() == 0){
+    public void verifDeck(Player P) {
+        if (P.getDeck().getDeck().size() == 0) {
             P.deck.setDeck(P.cardPicked); // if the deck is empty, we put all card picked in it to fill
         }
     }
 
 
-    public void seeCardOnHand(){            //F
+    public void seeCardOnHand() {            //F
         int i = 1;
-        for(  Card card : handCards){
-            System.out.println(i +" : " + card.getCardName());
+        for (Card card : handCards) {
+            System.out.println(i + " : " + card.getCardName());
             i++;
         }
     }
 
-    public void seeObstacleOnHand(){            //F
+    public void seeObstacleOnHand() {            //F
         int i = 0;
-        for(Obstacles card : block){
-            System.out.println(i + " : " + card.getCardName()+" ,");
+        for (Obstacles card : block) {
+            System.out.println(i + " : " + card.getCardName() + " ,");
             i++;
-            }
+        }
     }
 
-    public void seeCardOnProgram(){
+    public void seeCardOnProgram() {
         //F
         System.out.print("[ ");
-        for(Card card : program){
+        for (Card card : program) {
             System.out.print(card.getCardName() + "  ;");
         }
         System.out.println(" ]");
     }
 
 
-    public void addCardPicked (Card card){
+    public void addCardPicked(Card card) {
         this.cardPicked.add(card);
 
     }
@@ -148,7 +145,7 @@ public class Player {
         return handCards;
     }
 
-    public void setpositon(int xtemp, int ytemp){       //F
+    public void setpositon(int xtemp, int ytemp) {       //F
         this.X = xtemp;
         this.Y = ytemp;
     }
@@ -169,14 +166,19 @@ public class Player {
         return this.name;
     }
 
+    //SETTERS
+    public void setName(String name) {      //F
+        this.name = name;
+    }
+
     public Deck getDeck() {
         return deck;
     }
+    // no use-just for calling
 
     public String getIcontest() {           //F
         return this.icontest;
     }
-        // no use-just for calling
 
     public ArrayList<Card> getProgram() {
         return program;
@@ -190,62 +192,52 @@ public class Player {
         return this.direction;
     }
 
-    public int getPassageOrder() {
-        return this.passageOrder;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getUltimatum() {
-        return ultimatum;
-    }
-
-    public ArrayList<Card> getCardPicked() {
-        return cardPicked;
-    }
-
-
-    //SETTERS
-    public void setName(String name) {      //F
-        this.name = name;
-    }
-
-    public void setBlock() {
-
-    }
-
     public void setDirection(String direction) {        //F
         this.direction = direction;
+    }
+
+    public int getPassageOrder() {
+        return this.passageOrder;
     }
 
     public void setPassageOrder(int passageOrder) {
         this.passageOrder = passageOrder;
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getUltimatum() {
+        return ultimatum;
     }
 
     public void setUltimatum(int ultimatum) {
         this.ultimatum = ultimatum;
     }
 
+    public ArrayList<Card> getCardPicked() {
+        return cardPicked;
+    }
+
+    public void setBlock() {
+
+    }
+
 
     //REMOVE
 
-    public void removeCFH (Card card){
+    public void removeCFH(Card card) {
         this.handCards.remove(card);
     }
 
-    public void removeProgram (Card card){
+    public void removeProgram(Card card) {
         this.program.remove(card);
     }
-
-
-
-
 
 
     //end
