@@ -1,8 +1,6 @@
 package game;
 
-import cards.Card;
-import cards.Obstacles;
-import cards.Pierre;
+import cards.*;
 
 import java.util.*;
 
@@ -360,7 +358,7 @@ public class Game {
             removeCell(x2, y2);
 
         } else{
-            System.out.println("Sorry, your action is not possible !");
+            System.out.println("Sorry,  your action is not possible !");
         }
     }
     private void verifBlue(Player P, Card card, int x2, int y2) {
