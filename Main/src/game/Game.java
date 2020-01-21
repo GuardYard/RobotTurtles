@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Game {
     public Scanner sc = new Scanner(System.in);
 
-    private ArrayList<Player> Joueur = new ArrayList<Player>();
+    private ArrayList<Player> Joueurs = new ArrayList<Player>();
     private ArrayList<Jewel> Jewel = new ArrayList<Jewel>();
     private ArrayList<Player> Winners = new ArrayList<Player>();
     private int victoryV = 1;
@@ -42,8 +42,8 @@ public class Game {
     }
 
     public void turn() {
-        while (Winners.size() < Joueur.size() - 1) {
-            for (Player player : this.Joueur) {
+        while (Winners.size() < Joueurs.size() - 1) {
+            for (Player player : this.Joueurs) {
                 if (player.getUltimatum() == 0) {
                     player.verifDeck(player);
                     player.verifHand(player);
@@ -68,7 +68,7 @@ public class Game {
                         viewCell();
                     }
                 }
-                if (Winners.size() == Joueur.size() - 1) {
+                if (Winners.size() == Joueurs.size() - 1) {
                     break;
                 }
             }
@@ -148,8 +148,8 @@ public class Game {
             P1.setPassageOrder(NbO.get(0));
             P2.setPassageOrder(NbO.get(1));
             this.Jewel.add(J1);
-            this.Joueur.add(P1);
-            this.Joueur.add(P2);
+            this.Joueurs.add(P1);
+            this.Joueurs.add(P2);
             Obstacles stoneWall = new Pierre();
             for (int i = 0; i < 8; i++) {
                 setCell(stoneWall.getIcon(), 7, i);
@@ -183,9 +183,9 @@ public class Game {
             this.Jewel.add(J1);
             this.Jewel.add(J2);
             this.Jewel.add(J3);
-            this.Joueur.add(P1);
-            this.Joueur.add(P2);
-            this.Joueur.add(P3);
+            this.Joueurs.add(P1);
+            this.Joueurs.add(P2);
+            this.Joueurs.add(P3);
             Obstacles stoneWall = new Pierre();
             for (int i = 0; i < 8; i++) {
                 setCell(stoneWall.getIcon(), 7, i);
@@ -222,19 +222,19 @@ public class Game {
             P4.setPassageOrder(NbO.get(3));
             this.Jewel.add(J1);
             this.Jewel.add(J2);
-            this.Joueur.add(P1);
-            this.Joueur.add(P2);
-            this.Joueur.add(P3);
-            this.Joueur.add(P4);
+            this.Joueurs.add(P1);
+            this.Joueurs.add(P2);
+            this.Joueurs.add(P3);
+            this.Joueurs.add(P4);
         }
         this.cashPrize = P;
         sc.nextLine();
-        for (Player elem : this.Joueur) {
+        for (Player elem : this.Joueurs) {
             System.out.println("What is player " + elem.getName() + "'s name ?");
             String name = sc.nextLine();
             elem.setName(name);
         }
-        setJoueur(initOrder(this.Joueur));
+        setJoueurs(initOrder(this.Joueurs));
     }
 
     private void increaseVictoryV() {
@@ -262,10 +262,10 @@ public class Game {
 
         } else if (this.getCell(x2, y2).equals(ConsoleColors.YELLOW_BACKGROUND_BRIGHT + "  *  " + ConsoleColors.RESET)) {
             //verifié si il y a une tortue et cas jewel
-            if (this.getJoueur().size() == 2) { //cas ou 2 players
+            if (this.getJoueurs().size() == 2) { //cas ou 2 players
                 P.setDirection(card.play(P.getDirection()));
 
-            } else if (this.getJoueur().size() == 3) {
+            } else if (this.getJoueurs().size() == 3) {
                 if (P.getNb() == 1) {
                     P.setpositon(0, 0);
                 } else if (P.getNb() == 2) {
@@ -273,7 +273,7 @@ public class Game {
                 } else if (P.getNb() == 3) {
                     P.setpositon(6, 0);
                 }
-            } else if (this.getJoueur().size() == 4) {
+            } else if (this.getJoueurs().size() == 4) {
                 if (P.getNb() == 1) {
                     P.setpositon(0, 0);
                 } else if (P.getNb() == 2) {
@@ -286,44 +286,44 @@ public class Game {
             }
         } else if (this.getCell(x2, y2).equals("  P1 ") || this.getCell(x2, y2).equals("  P2 ") || this.getCell(x2, y2).equals("  P3 ") || this.getCell(x2, y2).equals("  P4 ")) {
 
-            if (this.getJoueur().size() == 2) { //cas ou 2 players
+            if (this.getJoueurs().size() == 2) { //cas ou 2 players
 //              String str = getCell(x2,y2);
 //              int rang = getPlayer(str); rang equals to the players position in Joueur (List)
-                this.getJoueur().get(getPlayer(getCell(x2, y2))).setDirection(card.play(P.getDirection())); //Pour code equivalent getPlayer(getCell(x2,y2)) ==> rang
+                this.getJoueurs().get(getPlayer(getCell(x2, y2))).setDirection(card.play(P.getDirection())); //Pour code equivalent getPlayer(getCell(x2,y2)) ==> rang
 
-            } else if (this.getJoueur().size() == 3) {
+            } else if (this.getJoueurs().size() == 3) {
 
-                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
+                if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(3, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(3, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(6, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(6, 0);
 
                 }
 
-            } else if (this.getJoueur().size() == 4) {
+            } else if (this.getJoueurs().size() == 4) {
 
-                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
+                if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(2, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(2, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 4) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 4) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(7, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(7, 0);
 
                 }
             }
@@ -345,22 +345,22 @@ public class Game {
 
 
         } else if (this.getCell(x2, y2).equals("  P1 ") || this.getCell(x2, y2).equals("  P2 ") || this.getCell(x2, y2).equals("  P3 ") || this.getCell(x2, y2).equals("  P4 ")) {
-            if (this.getJoueur().size() == 2) { //cas ou 2 players
+            if (this.getJoueurs().size() == 2) { //cas ou 2 players
                 if (P.getNb() == 1) {
                     P.setpositon(1, 0);
                 } else if (P.getNb() == 2) {
                     P.setpositon(5, 0);
                 }
-                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
+                if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(1, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(1, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
                 }
 
-            } else if (this.getJoueur().size() == 3) {
+            } else if (this.getJoueurs().size() == 3) {
                 if (P.getNb() == 1) {
                     P.setpositon(0, 0);
                 } else if (P.getNb() == 2) {
@@ -368,21 +368,21 @@ public class Game {
                 } else if (P.getNb() == 3) {
                     P.setpositon(6, 0);
                 }
-                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
+                if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(3, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(3, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(6, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(6, 0);
 
                 }
 
-            } else if (this.getJoueur().size() == 4) {
+            } else if (this.getJoueurs().size() == 4) {
                 if (P.getNb() == 1) {
                     P.setpositon(0, 0);
                 } else if (P.getNb() == 2) {
@@ -392,21 +392,21 @@ public class Game {
                 } else if (P.getNb() == 4) {
                     P.setpositon(7, 0);
                 }
-                if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
+                if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 1) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(0, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 2) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(2, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(2, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 3) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(5, 0);
 
-                } else if (this.getJoueur().get(getPlayer(getCell(x2, y2))).getNb() == 4) {
+                } else if (this.getJoueurs().get(getPlayer(getCell(x2, y2))).getNb() == 4) {
 
-                    this.getJoueur().get(getPlayer(getCell(x2, y2))).setpositon(7, 0);
+                    this.getJoueurs().get(getPlayer(getCell(x2, y2))).setpositon(7, 0);
 
                 }
 
@@ -480,7 +480,7 @@ public class Game {
     }
 
     private void update() { //F
-        for (Player P : Joueur) {
+        for (Player P : Joueurs) {
             if(P.getUltimatum()==0) {
                 setCell(P.getIcontest(), P.getX(), P.getY());
             }
@@ -502,9 +502,9 @@ public class Game {
     //GETTERS
     public int getPlayer(String str) {
         int i = 0;
-        for (Player p : Joueur) {
+        for (Player p : Joueurs) {
             if (p.getIcontest().equals(str)) {
-                i = Joueur.indexOf(p);
+                i = Joueurs.indexOf(p);
             }
         }
         return i;
@@ -514,13 +514,13 @@ public class Game {
         return Cell[x][y];
     }
 
-    public ArrayList<Player> getJoueur() {
-        return Joueur;
+    public ArrayList<Player> getJoueurs() {
+        return Joueurs;
     }
 
     //SETTERS
-    private void setJoueur(ArrayList<Player> joueur) {
-        Joueur = joueur;
+    private void setJoueurs(ArrayList<Player> joueurs) {
+        Joueurs = joueurs;
     }
 
 
