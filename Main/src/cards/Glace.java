@@ -17,11 +17,17 @@ public class Glace extends Obstacles {
     }
 
     public int[] play() {
-        System.out.println("Please enter you X coordinate -->");
         Scanner sc = new Scanner(System.in);
-        int X = sc.nextInt();
-        System.out.println("Please enter you Y coordinate (down)");
-        int Y = sc.nextInt();
+        int X;
+        int Y;
+        do {
+            System.out.println("Please enter you X coordinate -->");
+            X = sc.nextInt();
+        }while(X<0 || X>7);
+        do {
+            System.out.println("Please enter you Y coordinate (down)");
+            Y = sc.nextInt();
+        }while (Y<0 || Y>7);
         return new int[]{X, Y};
     }
 }
