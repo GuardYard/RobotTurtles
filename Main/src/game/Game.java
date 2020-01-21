@@ -45,8 +45,8 @@ public class Game {
         while (Winners.size() < Joueur.size() - 1) {
             for (Player player : this.Joueur) {
                 if (player.getUltimatum() == 0) {
-                    player.verifHand(player);
                     player.verifDeck(player);
+                    player.verifHand(player);
                     int commande = 0;
                     do {
                         System.out.println("Your turtle is facing : " + player.getDirection());
