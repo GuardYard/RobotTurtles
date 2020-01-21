@@ -127,24 +127,6 @@ public class Game {
         return SortedP;
     }
 
-    public void viewCell() { //F
-        update();
-        //echelle axe sur X
-        System.out.print("    ");
-        for (int i = 0; i < Cell.length; i++) {
-            System.out.print("[ " + i + " ] ");
-        }
-        System.out.print('\n');
-
-        for (int i = 0; i < Cell.length; i++) {
-            System.out.print("[" + i + "]["); // on met l'echelle en Y
-            for (String[] strings : Cell) {
-                System.out.print(strings[i]);
-                System.out.print(",");
-            }
-            System.out.println("]");
-        }
-    }
 
     public void addPlayer(int P) {
         //F
@@ -259,24 +241,11 @@ public class Game {
         this.victoryV++;
     }
 
-    private void removeCell(int x, int y) {
-        Cell[x][y] = "     ";
-    }
-
     public void decreaseCashPrize() {
         this.cashPrize--;
     }
 
-    public void update() { //F
-        for (Player P : Joueur) {
-            if(P.getUltimatum()==0) {
-                setCell(P.getIcontest(), P.getX(), P.getY());
-            }
-        }
-        for (Jewel jewel : Jewel) {
-            setCell(jewel.getIcon(), jewel.getX(), jewel.getY());
-        }
-    }
+
 
     public void winners(Player p) {
         this.Winners.add(p);
@@ -491,9 +460,44 @@ public class Game {
         }
     }
 
+    public void viewCell() { //F
+        update();
+        //echelle axe sur X
+        System.out.print("    ");
+        for (int i = 0; i < Cell.length; i++) {
+            System.out.print("[ " + i + " ] ");
+        }
+        System.out.print('\n');
+
+        for (int i = 0; i < Cell.length; i++) {
+            System.out.print("[" + i + "]["); // on met l'echelle en Y
+            for (String[] strings : Cell) {
+                System.out.print(strings[i]);
+                System.out.print(",");
+            }
+            System.out.println("]");
+        }
+    }
+
+    private void update() { //F
+        for (Player P : Joueur) {
+            if(P.getUltimatum()==0) {
+                setCell(P.getIcontest(), P.getX(), P.getY());
+            }
+        }
+        for (Jewel jewel : Jewel) {
+            setCell(jewel.getIcon(), jewel.getX(), jewel.getY());
+        }
+    }
+
     public void setCell(String icon, int x, int y) {
         Cell[x][y] = icon;
     }
+
+    private void removeCell(int x, int y) {
+        Cell[x][y] = "     ";
+    }
+
 
     //GETTERS
     public int getPlayer(String str) {
