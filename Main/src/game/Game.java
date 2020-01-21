@@ -269,7 +269,9 @@ public class Game {
 
     public void update() { //F
         for (Player P : Joueur) {
-            setCell(P.getIcontest(), P.getX(), P.getY());
+            if(P.getUltimatum()==0) {
+                setCell(P.getIcontest(), P.getX(), P.getY());
+            }
         }
         for (Jewel jewel : Jewel) {
             setCell(jewel.getIcon(), jewel.getX(), jewel.getY());
