@@ -102,6 +102,9 @@ public class Game {
             player.addToProgram(player, player.getHandCards().get(chosenCard));  //fonction d'ajout de la carte au programme. F
 
             String choixContinue = "";
+            if(player.getHandCards().size() == 0){
+                break;
+            }
 
             do {
                 System.out.println("Do you want to continue to add cards in your program? (Yes : Y; No : N)");
